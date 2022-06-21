@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AudioLibrary = void 0;
+class AudioLibrary {
+    constructor(props) {
+        this.play = () => {
+            this.audio.play();
+        };
+        this.stop = () => {
+            this.audio.pause();
+            this.audio.currentTime = 0;
+        };
+        this.audio = new Audio(props.src);
+    }
+}
+exports.AudioLibrary = AudioLibrary;
+//# sourceMappingURL=AudioLibrary.js.map

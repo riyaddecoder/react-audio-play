@@ -1,5 +1,2 @@
-declare type Props = {
-    style?: {};
-};
-export declare const AudioPlayer: (props: Props) => JSX.Element;
-export {};
+import { AudioTypeInterface } from './AudioTypeInterface';
+export declare const AudioPlayer: (props: AudioTypeInterface) => JSX.Element;
