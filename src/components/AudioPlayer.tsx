@@ -1,9 +1,20 @@
 import React from 'react';
+import { useRef, useState } from 'react';
+import { AudioLibrary } from './AudioLibrary';
+import { AudioTypeInterface } from './AudioTypeInterface';
 
-type Props = {
-    style?: {};
-};
+export const AudioPlayer = (props: AudioTypeInterface) => {
+    const audio = useRef(new AudioLibrary(props));
+    const [isPlaying, setIsPlaying] = useState(false);
 
-export const AudioPlayer = (props: Props) => {
-    return <div>AudioPlayer</div>;
+    const playOrStop = () => {
+        setIsPlaying(!isPlaying);
+        if (isPlaying) {
+            audio.current.stop();
+        } else {
+            audio.current.play();
+        }
+    };
+
+    return <button onClick={playOrStop}>{isPlaying ? 'Stop' : 'Play'}</button>;
 };
