@@ -1,19 +1,18 @@
-import { AudioTypeInterface } from "./AudioTypeInterface";
+import { AudioTypeInterface } from './AudioTypeInterface';
 
 export class AudioLibrary {
-    
-    private audio : any;
-   
-    constructor(props : AudioTypeInterface) {
-      this.audio = new Audio(props.src);
-    }
+  private audio: any;
 
-    play = () => {
-        this.audio.play();
-    }
+  constructor(props: AudioTypeInterface) {
+    this.audio = new Audio(props.src);
+  }
 
-    stop = () => {
-        this.audio.pause();
-        this.audio.currentTime = 0;
-    }
+  play = () => {
+    this.audio.play();
+  };
+
+  stop = () => {
+    this.audio.pause();
+    this.audio.currentTime = 0;
+  };
 }

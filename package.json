@@ -1,22 +1,58 @@
 {
-    "name": "react-audio-play",
-    "version": "0.0.4",
-    "description": "React audio player component",
-    "main": "index.js",
-    "module": "dist/esm/index.js",
-    "files": [
-        "dist"
-    ],
-    "scripts": {
-        "build": "tsc"
-    },
-    "keywords": ["react-audio","react-audio-play","audio-player "],
-    "author": "Shahidul Alam Riyad",
-    "license": "MIT",
-    "devDependencies": {
-        "@types/react": "^18.0.14",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "typescript": "^4.7.4"
-    }
+  "name": "react-audio-play",
+  "version": "0.0.4",
+  "description": "React audio player component",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run prettier && npm run lint",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
+    "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
+    "test": "jest --config jestconfig.json"
+  },
+  "keywords": [
+    "react-audio",
+    "react-audio-play",
+    "audio-player",
+    "typescripts"
+  ],
+  "author": "Shahidul Alam Riyad (riyaddecoder)",
+  "license": "MIT",
+  "devDependencies": {
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.3",
+    "@types/react": "^18.0.14",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^29.6.1",
+    "jest-canvas-mock": "^2.5.2",
+    "jest-environment-jsdom": "^29.6.1",
+    "prettier": "^3.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^4.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riyaddecoder/react-audio-play"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  }
 }

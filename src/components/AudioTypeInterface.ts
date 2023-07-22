@@ -1,3 +1,3 @@
 export interface AudioTypeInterface {
-    src : string
+  src: string;
 }
