@@ -1,29 +1,22 @@
 {
-  "name": "react-audio-play",
-  "version": "0.0.4",
-  "description": "React audio player component",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "rm -rf dist/ && npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc",
-    "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
-  },
-  "author": "Shahidul Alam Riyad",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^18.0.0",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^4.7.4"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+    "name": "react-audio-play",
+    "version": "0.0.4",
+    "description": "React audio player component",
+    "main": "index.js",
+    "module": "dist/esm/index.js",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc"
+    },
+    "keywords": ["react-audio","react-audio-play","audio-player "],
+    "author": "Shahidul Alam Riyad",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/react": "^18.0.14",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "typescript": "^4.7.4"
+    }
 }
