@@ -53,6 +53,6 @@
     "url": "git+https://github.com/riyaddecoder/react-audio-play"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=17"
   }
 }
