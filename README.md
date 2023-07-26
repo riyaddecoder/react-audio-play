@@ -88,8 +88,6 @@ const App = () => {
       <h1>My Audio Player</h1>
       <AudioPlayer
         src="path/to/audio.mp3"
-        autoPlay
-        controls
         onPlay={handlePlay}
         onPause={handlePause}
       />
