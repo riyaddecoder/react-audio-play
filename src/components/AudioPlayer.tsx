@@ -174,7 +174,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
     }
   };
 
-  const handleMouseDownEvent = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleRewindMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     currentlyDragged.current = event.target as HTMLDivElement;
 
     window.addEventListener('mousemove', rewind, false);
@@ -189,7 +189,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
     );
   };
 
-  const handleMouseDownVolume = (event: MouseEvent | React.MouseEvent) => {
+  const handleVolumeMouseDown = (event: MouseEvent | React.MouseEvent) => {
     currentlyDragged.current = event.target as HTMLDivElement;
 
     window.addEventListener('mousemove', changeVolume, false);
@@ -236,7 +236,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
               ...(sliderColor ? { backgroundColor: sliderColor } : {})
             }}
           >
-            <div className="rap-pin" data-method="rewind" onMouseDown={handleMouseDownEvent} style={sliderColor ? { backgroundColor: sliderColor } : {}}></div>
+            <div className="rap-pin" data-method="rewind" onMouseDown={handleRewindMouseDown} style={sliderColor ? { backgroundColor: sliderColor } : {}}></div>
           </div>
         </div>
         <span className="rap-total-time">{totalTime}</span>
@@ -257,7 +257,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
                 ...(sliderColor ? { backgroundColor: sliderColor } : {})
               }}
             >
-              <div className="rap-pin" data-method="changeVolume" style={sliderColor ? { backgroundColor: sliderColor } : {}} onMouseDown={handleMouseDownVolume}></div>
+              <div className="rap-pin" data-method="changeVolume" style={sliderColor ? { backgroundColor: sliderColor } : {}} onMouseDown={handleVolumeMouseDown}></div>
             </div>
           </div>
         </div>
