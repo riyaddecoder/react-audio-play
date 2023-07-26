@@ -12,7 +12,7 @@
 
 ## react-audio-play
 
-`react-audio-play` is a simple and customizable audio player npm package for React applications. It provides an easy-to-use interface to play audio files in your React components with minimal setup.
+`react-audio-play` is a simple, lightweight and customizable audio player npm package for React applications. It provides an easy-to-use interface to play audio files in your React components with minimal setup.
 
 ![react-audio-play](https://example.com/react-audio-play-demo.gif)
 
