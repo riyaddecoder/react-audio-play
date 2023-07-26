@@ -34,7 +34,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
     if (volumeOpen && volumePanel.current) {
       const panelRect = volumePanel.current.getBoundingClientRect();
       if (panelRect.top < 0) {
-        volumePanel.current.style.top = `${(volumePanel.current.parentNode as HTMLDivElement)?.getBoundingClientRect().top ?? 0 * -1}px`;
+        volumePanel.current.style.top = `${((volumePanel.current.parentNode as HTMLDivElement)?.getBoundingClientRect().top ?? 0) * -1}px`;
       }
     }
   }, [volumeOpen]);
