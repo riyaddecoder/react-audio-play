@@ -4,5 +4,8 @@
   },
   "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
-  "testEnvironment": "jsdom"
+  "testEnvironment": "jsdom",
+  "moduleNameMapper": {
+    "^.+\\.(css|less)$": "<rootDir>/config/CSSStub.ts"
+  }
 }
