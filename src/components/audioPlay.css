@@ -32,7 +32,7 @@
   position: relative;
 }
 .rap-container .rap-slider .rap-progress {
-  background-color: #007FFF;
+  background-color: #007fff;
   border-radius: inherit;
   position: absolute;
   pointer-events: none;
@@ -41,13 +41,13 @@
   height: 16px;
   width: 16px;
   border-radius: 8px;
-  background-color: #007FFF;
+  background-color: #007fff;
   position: absolute;
   pointer-events: all;
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);
 }
 .rap-container .rap-controls {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 18px;
   display: flex;
@@ -92,9 +92,18 @@
   align-items: center;
   display: flex;
 }
-.rap-container .rap-volume .rap-volume-controls.rap-hidden {
+.rap-container .rap-volume .rap-hidden {
   display: none;
 }
+.rap-container .rap-volume .rap-volume-control-container {
+  height: 100vw;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+}
+
 .rap-container .rap-volume .rap-volume-controls .rap-slider {
   margin-top: 12px;
   margin-bottom: 12px;
@@ -106,12 +115,7 @@
   height: 100%;
   width: 6px;
 }
-.rap-container
-  .rap-volume
-  .rap-volume-controls
-  .rap-slider
-  .rap-progress
-  .rap-pin {
+.rap-container .rap-volume .rap-volume-controls .rap-slider .rap-progress .rap-pin {
   left: -5px;
   top: -8px;
 }

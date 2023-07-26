@@ -31,15 +31,6 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
   const [speakerIcon, setSpeakerIcon] = useState<string>(getVolumePath(volume));
 
   useEffect(() => {
-    if (volumeOpen && volumePanel.current) {
-      const panelRect = volumePanel.current.getBoundingClientRect();
-      if (panelRect.top < 0) {
-        volumePanel.current.style.top = `${((volumePanel.current.parentNode as HTMLDivElement)?.getBoundingClientRect().top ?? 0) * -1}px`;
-      }
-    }
-  }, [volumeOpen]);
-
-  useEffect(() => {
     if (!isNaN(volume)) {
       const tempVol = volume > 100 ? 100 : volume < 0 ? 0 : volume;
       setVolumeProgress(tempVol);
@@ -93,6 +84,18 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
 
   const handleLoadedMetaData = () => {
     setTotalTime(formatTime(audioRef.current?.duration ?? 0));
+  };
+
+  const handleOpenVolumePanel = (e: React.MouseEvent<HTMLDivElement>) => {
+    const containerRect = (e.target as HTMLElement).getBoundingClientRect();
+    const volumePanelRect = volumePanel.current?.getBoundingClientRect();
+    if (containerRect && volumePanel.current && volumePanelRect) {
+      const currentTop = containerRect.top - 155;
+
+      volumePanel.current.style.top = (currentTop < 0 ? 0 : currentTop) + 'px';
+      volumePanel.current.style.left = containerRect.left - 5 + 'px';
+    }
+    setVolumeOpen((vol) => !vol);
   };
 
   function getVolumePath(volumeLevel: number) {
@@ -243,21 +246,30 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
       </div>
 
       <div className="rap-volume">
-        <div className="rap-volume-btn" onClick={() => setVolumeOpen(!volumeOpen)}>
+        <div className="rap-volume-btn" onClick={handleOpenVolumePanel}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path fill={volumeOpen ? sliderColor ?? '#007FFF' : color ?? '#566574'} fillRule="evenodd" d={speakerIcon} />
           </svg>
         </div>
-        <div ref={volumePanel} className={`rap-volume-controls ${!volumeOpen ? 'rap-hidden' : ''}`}>
-          <div className="rap-slider" data-direction="vertical" onClick={changeVolume}>
-            <div
-              className="rap-progress"
-              style={{
-                ...{ height: `${volumeProgress}%` },
-                ...(sliderColor ? { backgroundColor: sliderColor } : {})
-              }}
-            >
-              <div className="rap-pin" data-method="changeVolume" style={sliderColor ? { backgroundColor: sliderColor } : {}} onMouseDown={handleVolumeMouseDown}></div>
+        <div className={`rap-volume-control-container ${!volumeOpen ? 'rap-hidden' : ''}`} onClick={() => setVolumeOpen(false)}>
+          <div
+            ref={volumePanel}
+            className={`rap-volume-controls`}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+          >
+            <div className="rap-slider" data-direction="vertical" onClick={changeVolume}>
+              <div
+                className="rap-progress"
+                style={{
+                  ...{ height: `${volumeProgress}%` },
+                  ...(sliderColor ? { backgroundColor: sliderColor } : {})
+                }}
+              >
+                <div className="rap-pin" data-method="changeVolume" style={sliderColor ? { backgroundColor: sliderColor } : {}} onMouseDown={handleVolumeMouseDown}></div>
+              </div>
             </div>
           </div>
         </div>
