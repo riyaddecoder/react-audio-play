@@ -32,7 +32,7 @@
   position: relative;
 }
 .rap-container .rap-slider .rap-progress {
-  background-color: #44bfa3;
+  background-color: #007FFF;
   border-radius: inherit;
   position: absolute;
   pointer-events: none;
@@ -41,7 +41,7 @@
   height: 16px;
   width: 16px;
   border-radius: 8px;
-  background-color: #44bfa3;
+  background-color: #007FFF;
   position: absolute;
   pointer-events: all;
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);

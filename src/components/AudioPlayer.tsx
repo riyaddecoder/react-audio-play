@@ -245,7 +245,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
       <div className="rap-volume">
         <div className="rap-volume-btn" onClick={() => setVolumeOpen(!volumeOpen)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path fill={volumeOpen ? sliderColor ?? '#44bfa3' : color ?? '#566574'} fillRule="evenodd" d={speakerIcon} />
+            <path fill={volumeOpen ? sliderColor ?? '#007FFF' : color ?? '#566574'} fillRule="evenodd" d={speakerIcon} />
           </svg>
         </div>
         <div ref={volumePanel} className={`rap-volume-controls ${!volumeOpen ? 'rap-hidden' : ''}`}>
