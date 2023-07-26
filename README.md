@@ -59,13 +59,10 @@ export default App;
 `react-audio-play` accepts the following props:
 
 - `src` (string, required): The URL or file path of the audio file to be played.
-- `autoPlay` (boolean, optional): Set to true to start playing the audio automatically (default: `false`).
 - `loop` (boolean, optional): Set to true to loop the audio playback (default: false).
-- `controls` (boolean, optional): Set to true to display the built-in audio controls (default: `true`).
-- `volume` (number, optional): The initial volume level (0 to 1) of the audio (default: `1`).
+- `volume` (number, optional): The initial volume level (0 to 100) of the audio (default: `100`).
 - `onPlay` (function, optional): Callback function to execute when the audio starts playing.
 - `onPause` (function, optional): Callback function to execute when the audio is paused.
-- `onStop` (function, optional): Callback function to execute when the audio is stopped.
 - `onEnd` (function, optional): Callback function to execute when the audio playback ends.
 - `onError` (function, optional): Callback function to execute if there's an error loading or playing the audio.
 - `backgroundColor` (string, optional): Set the background color of the audio player (default: `#fff`).
