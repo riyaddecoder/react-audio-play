@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { iconPaths } from '../helpers/icons/icons';
 import { formatTime } from '../helpers/utils/formatTime';
 import { getRangeBox } from '../helpers/utils/getRangeBox';
+import './audioPlay.css';
 
 export interface AudioInterface {
   src: string;
@@ -9,9 +10,14 @@ export interface AudioInterface {
   color?: string;
   style?: React.CSSProperties;
   sliderColor?: string;
+  volume?: number;
+  onPlay?: () => void;
+  onPause?: () => void;
+  onEnd?: () => void;
+  onError?: () => void;
 }
 
-export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, color, style, sliderColor }) => {
+export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, color, style, sliderColor, volume = 100, onPlay, onPause, onEnd, onError }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const currentlyDragged = useRef<HTMLDivElement | null>(null);
   const volumePanel = useRef<HTMLDivElement>(null);
@@ -22,27 +28,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
   const [totalTime, setTotalTime] = useState<string>('0:00');
   const [volumeOpen, setVolumeOpen] = useState<boolean>(false);
   const [volumeProgress, setVolumeProgress] = useState<number>(100);
-  const [speakerIcon, setSpeakerIcon] = useState<string>(iconPaths.fullVolume);
-
-  useEffect(() => {
-    audioRef.current?.addEventListener('canplay', () => {
-      setCanPlay(true);
-    });
-
-    audioRef.current?.addEventListener('timeupdate', updateProgress);
-    audioRef.current?.addEventListener('volumechange', updateVolume);
-
-    audioRef.current?.addEventListener('ended', function () {
-      setIsPlaying(false);
-      if (audioRef.current) {
-        audioRef.current.currentTime = 0;
-      }
-    });
-
-    audioRef.current?.addEventListener('loadedmetadata', () => {
-      setTotalTime(formatTime(audioRef.current?.duration ?? 0));
-    });
-  }, []);
+  const [speakerIcon, setSpeakerIcon] = useState<string>(getVolumePath(volume));
 
   useEffect(() => {
     if (volumeOpen && volumePanel.current) {
@@ -53,7 +39,37 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
     }
   }, [volumeOpen]);
 
-  const updateVolume = () => {
+  useEffect(() => {
+    if (!isNaN(volume)) {
+      const tempVol = volume > 100 ? 100 : volume < 0 ? 0 : volume;
+      setVolumeProgress(tempVol);
+      if (audioRef.current) {
+        audioRef.current.volume = tempVol / 100;
+      }
+    }
+  }, [volume]);
+
+  const handleCanPlay = () => {
+    setCanPlay(true);
+  };
+
+  const handleOnError = () => {
+    if (onError) {
+      onError();
+    }
+  };
+
+  const handleEnded = () => {
+    setIsPlaying(false);
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      if (onEnd) {
+        onEnd();
+      }
+    }
+  };
+
+  const handleUpdateVolume = () => {
     if (audioRef.current) {
       setVolumeProgress(audioRef.current.volume * 100);
       if (audioRef.current.volume >= 0.5) {
@@ -66,24 +82,49 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
     }
   };
 
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (audioRef.current.paused) {
-        audioRef.current.play();
-        setIsPlaying(true);
-      } else {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      }
-    }
-  };
-
-  const updateProgress = () => {
+  const handleUpdateProgress = () => {
     if (audioRef.current) {
       const current = audioRef.current.currentTime;
       const percent = (current / audioRef.current.duration) * 100;
       setProgressBarPercent(percent);
       setCurrentTime(formatTime(current));
+    }
+  };
+
+  const handleLoadedMetaData = () => {
+    setTotalTime(formatTime(audioRef.current?.duration ?? 0));
+  };
+
+  function getVolumePath(volumeLevel: number) {
+    const MIN_VOLUME = 0;
+    const MAX_VOLUME = 100;
+
+    volumeLevel = isNaN(volumeLevel) ? 100 : Math.max(MIN_VOLUME, Math.min(volumeLevel, MAX_VOLUME));
+
+    if (volumeLevel >= 50) {
+      return iconPaths.fullVolume;
+    } else if (volumeLevel > 5) {
+      return iconPaths.midVolume;
+    }
+
+    return iconPaths.lowVolume;
+  }
+
+  const togglePlay = () => {
+    if (audioRef.current) {
+      if (audioRef.current.paused) {
+        audioRef.current.play();
+        setIsPlaying(true);
+        if (onPlay) {
+          onPlay();
+        }
+      } else {
+        audioRef.current.pause();
+        setIsPlaying(false);
+        if (onPause) {
+          onPause();
+        }
+      }
     }
   };
 
@@ -222,7 +263,15 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
         </div>
       </div>
 
-      <audio ref={audioRef}>
+      <audio
+        ref={audioRef}
+        onCanPlay={handleCanPlay}
+        onEnded={handleEnded}
+        onError={handleOnError}
+        onLoadedMetadata={handleLoadedMetaData}
+        onTimeUpdate={handleUpdateProgress}
+        onVolumeChange={handleUpdateVolume}
+      >
         <source src={src} type="audio/mpeg" />
       </audio>
     </div>
