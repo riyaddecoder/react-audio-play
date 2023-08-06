@@ -1,4 +1,4 @@
-[![NPM](https://img.shields.io/npm/v/react-select.svg)](https://www.npmjs.com/package/react-audio-play)
+[![NPM](https://img.shields.io/npm/v/react-audio-play.svg)](https://www.npmjs.com/package/react-audio-play)
 <a href="https://github.com/riyaddecoder/react-audio-play/issues">
   <img src="https://img.shields.io/github/issues/riyaddecoder/react-audio-play"/>
 </a>
