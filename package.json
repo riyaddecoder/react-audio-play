@@ -19,8 +19,12 @@
     "test": "jest --config jestconfig.json"
   },
   "keywords": [
+    "best audio player for react",
+    "simple audio player",
+    "audio player for react",
+    "react audio player",
     "react-audio",
-    "react-audio-play",
+    "react-audio-player",
     "audio-player",
     "typescripts"
   ],
