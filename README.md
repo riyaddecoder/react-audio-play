@@ -14,7 +14,7 @@
 
 `react-audio-play` is a simple, lightweight and customizable audio player npm package for React applications. It provides an easy-to-use interface to play audio files in your React components with minimal setup.
 
-![react-audio-play](https://example.com/react-audio-play-demo.gif)
+<!-- ![react-audio-play](https://example.com/react-audio-play-demo.gif) -->
 
 ## Features
 
@@ -106,6 +106,6 @@ This package is open-source and distributed under the MIT License. See the [LICE
 ## Contribution
 Contributions are welcome! If you find any issues or have suggestions, feel free to create an issue or submit a pull request on the [GitHub repository](https://github.com/riyaddecoder/react-audio-play/). Let's build this package together!
 
-![react-audio-play](https://example.com/react-audio-play-demo.gif)
+<!-- ![react-audio-play](https://example.com/react-audio-play-demo.gif) -->
 
 Enjoy using react-audio-play in your React applications, and we hope it enhances your audio experience with ease and flexibility. If you have any questions or need further assistance, don't hesitate to reach out to us! Happy coding! 🎶
