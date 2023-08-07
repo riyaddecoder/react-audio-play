@@ -1,0 +1,39 @@
+# This is a name of the workflow
+name: build
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on published releases
+  release:
+    types: [published]
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        # Setup node environment
+        uses: actions/setup-node@v3
+        with:
+          # Node version. Run "node -v" to check the latest version
+          node-version: 16.x
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: yarn && yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Publish
+        run: yarn publish
+
+        env:
+          # We need this to our NPM account
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

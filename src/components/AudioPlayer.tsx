@@ -6,6 +6,7 @@ import './audioPlay.css';
 
 export interface AudioInterface {
   src: string;
+  loop?: boolean;
   backgroundColor?: string;
   color?: string;
   style?: React.CSSProperties;
@@ -17,7 +18,7 @@ export interface AudioInterface {
   onError?: () => void;
 }
 
-export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, color, style, sliderColor, volume = 100, onPlay, onPause, onEnd, onError }) => {
+export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backgroundColor, color, style, sliderColor, volume = 100, onPlay, onPause, onEnd, onError }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const currentlyDragged = useRef<HTMLDivElement | null>(null);
   const volumePanel = useRef<HTMLDivElement>(null);
@@ -277,6 +278,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, backgroundColor, co
 
       <audio
         ref={audioRef}
+        loop={loop}
         onCanPlay={handleCanPlay}
         onEnded={handleEnded}
         onError={handleOnError}
