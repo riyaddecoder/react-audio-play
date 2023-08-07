@@ -1,10 +1,7 @@
 {
   "name": "react-audio-play",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "React audio player component",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types.d.ts",
   "files": [
     "dist",
     "LICENSE",
@@ -13,7 +10,8 @@
   "scripts": {
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run prettier && npm run lint",
-    "build": "rollup -c --bundleConfigAsCjs",
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html --dist-dir docs --public-url .",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
     "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
     "test": "jest --config jestconfig.json"
@@ -31,13 +29,8 @@
   "author": "Shahidul Alam Riyad (riyaddecoder)",
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.3",
-    "@rollup/plugin-node-resolve": "^15.1.0",
-    "@rollup/plugin-terser": "^0.4.3",
-    "@rollup/plugin-typescript": "^11.1.2",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.3",
-    "@types/react": "^18.0.14",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
     "eslint": "^8.45.0",
@@ -49,21 +42,22 @@
     "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^29.6.1",
     "prettier": "^3.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup": "^3.27.2",
-    "rollup-plugin-dts": "^5.3.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-styles": "^4.0.0",
-    "ts-jest": "^29.1.1",
-    "tslib": "^2.6.0",
-    "typescript": "^5.1.6"
+    "process": "^0.11.10",
+    "ts-jest": "^29.1.1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/riyaddecoder/react-audio-play"
   },
   "peerDependencies": {
-    "react": ">=17"
+    "react": "^18.2.0"
+  },
+  "dependencies": {
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
+    "parcel": "^2.9.3",
+    "react-audio-play": "^0.0.5",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.1.6"
   }
 }
