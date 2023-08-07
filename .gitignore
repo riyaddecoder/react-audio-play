@@ -4,4 +4,3 @@ dist
 yarn-error.log
 .vscode
 .parcel-cache
-docs
