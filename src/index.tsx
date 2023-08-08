@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { AudioPlayer } from 'react-audio-play';
+import RootPage from './components/RootPage';
+import './index.css';
+import 'prism-theme-vars/base.css';
+import 'prism-theme-vars/themes/vitesse-dark.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <div style={{ width: '600px', margin: '20px auto' }}>
-      <h1>React Audio Play</h1>
-      <h2>This is the demonstration of react-audio-play</h2>
-      <AudioPlayer src="https://download.samplelib.com/mp3/sample-12s.mp3" />
-    </div>
+    <RootPage />
   </React.StrictMode>
 );
