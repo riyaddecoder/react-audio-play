@@ -24,6 +24,9 @@
 - Trigger custom actions on audio events like onPlay, onPause, onStop, onEnd, etc.
 - Fully customizable appearance to match your application's design.
 
+## Demo
+Check [examples](https://riyaddecoder.github.io/react-audio-play/#example-usage) 
+
 ## Installation
 
 You can install `react-audio-play` using npm or yarn:
@@ -42,7 +45,7 @@ To use `react-audio-play`, import the `AudioPlayer` component and provide the ne
 
 ```js
 import React from 'react';
-import AudioPlayer from 'react-audio-play';
+import { AudioPlayer } from 'react-audio-play';
 
 const App = () => {
   return (
@@ -72,7 +75,7 @@ export default App;
 ## Example with Custom Event Handling
 ```js
 import React from 'react';
-import AudioPlayer from 'react-audio-play';
+import { AudioPlayer } from 'react-audio-play';
 
 const App = () => {
   const handlePlay = () => {
@@ -98,7 +101,7 @@ const App = () => {
 export default App;
 ```
 ## Custom Styling
-You can easily customize the appearance of the audio player by applying your CSS styles to the AudioPlayer component or by overriding the default styles in your project's CSS.
+You can easily customize the appearance of the audio player by applying your CSS styles to the AudioPlayer component or by overriding the default styles in your project's CSS. Check [examples](https://riyaddecoder.github.io/react-audio-play/#styled-examples)
 
 ## License
 This package is open-source and distributed under the MIT License. See the [LICENSE](https://github.com/riyaddecoder/react-audio-play/blob/master/LICENSE) file for details.
