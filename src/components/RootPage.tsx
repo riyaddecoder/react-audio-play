@@ -5,6 +5,7 @@ import ExampleBlock from './ExampleBlock';
 import PropsBlock from './PropsBlock';
 import TitleBlock from './TitleBlock';
 import './customStyle.css';
+import Navbar from './Navbar';
 
 const ExampleUsage = () => {
   useEffect(() => {
@@ -20,11 +21,7 @@ const ExampleUsage = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      {/* Header */}
-      <header className="bg-gray-200 p-4 rounded-t-md shadow-lg mb-4">
-        <h1 className="text-blue-500 text-4xl font-bold text-center pb-2">React Audio Play</h1>
-        <p className="text-gray-600 text-center">Explore the features and usage of our versatile audio player component.</p>
-      </header>
+      <Navbar />
 
       <main className="p-8">
         <div className="bg-white p-6 rounded-md shadow-lg mb-4">
@@ -61,25 +58,39 @@ const ExampleUsage = () => {
 
             {/* example 3 */}
             <ExampleBlock
-              title="Example 3: Darkmode using basic style props"
+              title="Example 3: Using audio callbacks"
+              code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n\tconst handlePlay = () => {\n\t\tconsole.log('Audio started playing');\n\t};\n\n\tconst handlePause = () => {\n\t\tconsole.log('Audio paused');\n\t};\n\n\tconst handleEnd = () => {\n\t\tconsole.log('Audio ended');\n\t};\n\n\tconst handleError = () => {\n\t\tconsole.log('An error has been occured');\n\t};\n\n\treturn (\n\t\t<AudioPlayer\n\t\t\tsrc="path/to/audio.mp3"\n\t\t\tonPlay={handlePlay}\n\t\t\tonPause={handlePause}\n\t\t\tonEnd={handleEnd}\n\t\t\tonError={handleError}\n\t\t/>\n\t);\n}`}
+            >
+              <AudioPlayer
+                src={audioSrc}
+                onPlay={() => console.log('Audio started playing')}
+                onEnd={() => console.log('Audio ended')}
+                onError={() => console.log('An error has been occured')}
+                onPause={() => console.log('Audio paused')}
+              />
+            </ExampleBlock>
+
+            {/* example 4 */}
+            <ExampleBlock
+              title="Example 4: Darkmode using basic style props"
               code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t\tcolor="#cfcfcf"\n\t\t\t\tsliderColor="#94b9ff"\n\t\t\t\tbackgroundColor="#2c2828"\n\t\t\t/>\n\t);\n}`}
             >
               <AudioPlayer src={audioSrc} backgroundColor="#2c2828" color="#cfcfcf" sliderColor="#94b9ff" />
             </ExampleBlock>
 
-            {/* example 4 */}
+            {/* example 5 */}
             <ExampleBlock
-              title="Example 4: Using Style Object"
+              title="Example 5: Using Style Object"
               code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t\tcolor="#f7b5cd"\n\t\t\t\tsliderColor="#ff669d"\n\t\t\t\tstyle={{ background: '#000', borderRadius: '15px', padding: '30px' }}\n\t\t\t/>\n\t);\n}`}
             >
               <AudioPlayer src={audioSrc} color="#f7b5cd" sliderColor="#ff669d" style={{ background: '#000', borderRadius: '15px', padding: '30px' }} />
             </ExampleBlock>
 
-            {/* example 5 */}
+            {/* example 6 */}
             <ExampleBlock
               className="custom-style"
               language="css"
-              title="Example 5: Using Custom CSS"
+              title="Example 6: Using Custom CSS"
               infoText="Use a wrapper class to avoid CSS override issues. Ex: .custom-style"
               code={`.custom-style .rap-container {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n\tcolor: aliceblue;\n}\n\n.custom-style .rap-container .rap-pp-icon:hover {\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}\n\n.custom-style .rap-container .rap-pp-icon path,\n.custom-style .rap-container .rap-volume-btn path {\n\tfill: white;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress {\n\tbackground-color: #daecff;\n\tborder-radius: inherit;\n\tposition: absolute;\n\tpointer-events: none;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n}\n\n.custom-style .rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #c3d5ff;\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}`}
             >
