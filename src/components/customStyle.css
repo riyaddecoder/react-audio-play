@@ -1,0 +1,31 @@
+.custom-style .rap-container {
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+  color: aliceblue;
+}
+
+.custom-style .rap-container .rap-pp-icon:hover {
+  box-shadow: 0 0 9px 7px #269eff52;
+}
+
+.custom-style .rap-container .rap-pp-icon path,
+.custom-style .rap-container .rap-volume-btn path {
+  fill: white;
+}
+
+.custom-style .rap-container .rap-slider .rap-progress {
+  background-color: #daecff;
+  border-radius: inherit;
+  position: absolute;
+  pointer-events: none;
+}
+
+.custom-style .rap-container .rap-volume .rap-volume-controls {
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+}
+
+.custom-style .rap-container .rap-slider .rap-progress .rap-pin {
+  background-color: #c3d5ff;
+  box-shadow: 0 0 9px 7px #269eff52;
+}
