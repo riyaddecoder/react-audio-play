@@ -33,7 +33,7 @@ const ExampleUsage = () => {
 
           <hr className="my-6 border-gray-300" />
 
-          <section className="p-4">
+          <section className="p-4" id="example-usage">
             <h2 className="text-2xl font-bold text-black mb-4">Example Usage</h2>
             <p className="mt-4 text-black">
               Below are examples of how you can use the <code className="bg-gray-100 p-1">AudioPlayer</code> component. Replace <code className="bg-gray-100 p-1">path/to/audio.mp3</code> with the
@@ -71,6 +71,7 @@ const ExampleUsage = () => {
             </ExampleBlock>
 
             {/* example 4 */}
+            <div id="styled-examples"></div>
             <ExampleBlock
               title="Example 4: Darkmode using basic style props"
               code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t\tcolor="#cfcfcf"\n\t\t\t\tsliderColor="#94b9ff"\n\t\t\t\tbackgroundColor="#2c2828"\n\t\t\t/>\n\t);\n}`}
