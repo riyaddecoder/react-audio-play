@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Prism from 'prismjs';
 import { AudioPlayer } from 'react-audio-play';
 import ExampleBlock from './ExampleBlock';
@@ -7,24 +7,40 @@ import TitleBlock from './TitleBlock';
 import Navbar from './Navbar';
 import './customStyle.css';
 
-const ExampleUsage = () => {
+const RootPage = () => {
+  const [isTabVisible, setIsTabVisible] = useState(!document.hidden);
+
   useEffect(() => {
     //Prism setup
     Prism.highlightAll();
-    setTimeout(() => {
-      //Scroll to hash
-      if (window.location.hash) {
-        const content = document.getElementById(window.location.hash.replace('#', ''));
-        content?.scrollIntoView({ behavior: 'smooth' });
-      }
 
-      for (const elem of document.getElementsByClassName(`language-js`)) {
-        if (elem.tagName === 'CODE') {
-          elem.classList.remove(`language-js`);
-        }
-      }
-    }, 500);
+    const handleVisibilityChange = () => {
+      setIsTabVisible(true);
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
+
+  useEffect(() => {
+    if (!document.hidden && isTabVisible) {
+      setTimeout(() => {
+        if (window.location.hash) {
+          const content = document.getElementById(window.location.hash.replace('#', ''));
+          content?.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        for (const elem of document.getElementsByClassName(`language-js`)) {
+          if (elem.tagName === 'CODE') {
+            elem.classList.remove(`language-js`);
+          }
+        }
+      }, 500);
+    }
+  }, [isTabVisible]);
 
   const audioSrc = 'https://download.samplelib.com/mp3/sample-12s.mp3';
 
@@ -120,4 +136,4 @@ const ExampleUsage = () => {
   );
 };
 
-export default ExampleUsage;
+export default RootPage;
