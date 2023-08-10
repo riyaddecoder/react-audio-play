@@ -4,11 +4,18 @@ import { AudioPlayer } from 'react-audio-play';
 import ExampleBlock from './ExampleBlock';
 import PropsBlock from './PropsBlock';
 import TitleBlock from './TitleBlock';
-import './customStyle.css';
 import Navbar from './Navbar';
+import './customStyle.css';
 
 const ExampleUsage = () => {
   useEffect(() => {
+    //Scroll to hash
+    if (window.location.hash) {
+      const content = document.getElementById(window.location.hash.replace('#', ''));
+      content?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    //Prism setup
     Prism.highlightAll();
     for (const elem of document.getElementsByClassName(`language-js`)) {
       if (elem.tagName === 'CODE') {
