@@ -33,11 +33,13 @@ const RootPage = () => {
           content?.scrollIntoView({ behavior: 'smooth' });
         }
 
-        for (const elem of document.getElementsByClassName(`language-js`)) {
-          if (elem.tagName === 'CODE') {
-            elem.classList.remove(`language-js`);
+        ['js', 'css'].forEach((eachLanguage) => {
+          for (const elem of document.getElementsByClassName(`language-${eachLanguage}`)) {
+            if (elem.tagName === 'CODE') {
+              elem.classList.remove(`language-${eachLanguage}`);
+            }
           }
-        }
+        });
       }, 500);
     }
   }, [isTabVisible]);
@@ -118,7 +120,7 @@ const RootPage = () => {
               language="css"
               title="Example 6: Using Custom CSS"
               infoText="Use a wrapper class to avoid CSS override issues. Ex: .custom-style"
-              code={`.custom-style .rap-container {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n\tcolor: aliceblue;\n}\n\n.custom-style .rap-container .rap-pp-icon:hover {\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}\n\n.custom-style .rap-container .rap-pp-icon path,\n.custom-style .rap-container .rap-volume-btn path {\n\tfill: white;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress {\n\tbackground-color: #daecff;\n\tborder-radius: inherit;\n\tposition: absolute;\n\tpointer-events: none;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n}\n\n.custom-style .rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #c3d5ff;\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}`}
+              code={`.custom-style .rap-container {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n\tcolor: aliceblue;\n}\n\n.custom-style .rap-container .rap-pp-icon path,\n.custom-style .rap-container .rap-volume-btn path {\n\tfill: white;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress {\n\tbackground-color: #daecff;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n}\n\n.custom-style .rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #c3d5ff;\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}`}
             >
               <AudioPlayer src={audioSrc} />
             </ExampleBlock>

@@ -33,7 +33,7 @@ const ExampleBlock: React.FC<PropsI> = ({ title, code, className = '', language 
         <div className="w-full md:w-1/2 relative ">
           <div className="code-background rounded p-2">
             <pre className={`language-${language} `}>
-              <code>{code}</code>
+              <code className="font-bold drop-shadow-none">{code}</code>
             </pre>
             <button className="absolute top-2 right-2 text-gray-100 bg-gray-800 hover:bg-gray-700 rounded-md px-2 py-1 text-sm transition duration-300" onClick={copyToClipboard}>
               {copied ? <span>Copied!</span> : <FiCopy className="w-6 h-6" />}
@@ -41,7 +41,7 @@ const ExampleBlock: React.FC<PropsI> = ({ title, code, className = '', language 
           </div>
           {infoText.trim() && (
             <div className="mt-1 flex items-center text-gray-600">
-              <FiInfo className="w-4 h-4 mr-1" /> {/* Info icon */}
+              <FiInfo className="w-4 h-4 mr-1" />
               <span>{infoText}</span>
             </div>
           )}
