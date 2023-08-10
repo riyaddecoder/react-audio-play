@@ -17,11 +17,13 @@ const ExampleUsage = () => {
 
     //Prism setup
     Prism.highlightAll();
-    for (const elem of document.getElementsByClassName(`language-js`)) {
-      if (elem.tagName === 'CODE') {
-        elem.classList.remove(`language-js`);
+    setTimeout(() => {
+      for (const elem of document.getElementsByClassName(`language-js`)) {
+        if (elem.tagName === 'CODE') {
+          elem.classList.remove(`language-js`);
+        }
       }
-    }
+    }, 1000);
   }, []);
 
   const audioSrc = 'https://download.samplelib.com/mp3/sample-12s.mp3';
