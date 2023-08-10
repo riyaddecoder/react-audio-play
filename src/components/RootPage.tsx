@@ -9,21 +9,21 @@ import './customStyle.css';
 
 const ExampleUsage = () => {
   useEffect(() => {
-    //Scroll to hash
-    if (window.location.hash) {
-      const content = document.getElementById(window.location.hash.replace('#', ''));
-      content?.scrollIntoView({ behavior: 'smooth' });
-    }
-
     //Prism setup
     Prism.highlightAll();
     setTimeout(() => {
+      //Scroll to hash
+      if (window.location.hash) {
+        const content = document.getElementById(window.location.hash.replace('#', ''));
+        content?.scrollIntoView({ behavior: 'smooth' });
+      }
+
       for (const elem of document.getElementsByClassName(`language-js`)) {
         if (elem.tagName === 'CODE') {
           elem.classList.remove(`language-js`);
         }
       }
-    }, 1000);
+    }, 500);
   }, []);
 
   const audioSrc = 'https://download.samplelib.com/mp3/sample-12s.mp3';
