@@ -87,18 +87,6 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
     setTotalTime(formatTime(audioRef.current?.duration ?? 0));
   };
 
-  const handleOpenVolumePanel = (e: React.MouseEvent<HTMLDivElement>) => {
-    const containerRect = (e.target as HTMLElement).getBoundingClientRect();
-    const volumePanelRect = volumePanel.current?.getBoundingClientRect();
-    if (containerRect && volumePanel.current && volumePanelRect) {
-      const currentTop = containerRect.top - 155;
-
-      volumePanel.current.style.top = (currentTop < 0 ? 0 : currentTop) + 'px';
-      volumePanel.current.style.left = containerRect.left - 5 + 'px';
-    }
-    setVolumeOpen((vol) => !vol);
-  };
-
   function getVolumePath(volumeLevel: number) {
     const MIN_VOLUME = 0;
     const MAX_VOLUME = 100;
@@ -247,12 +235,12 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
       </div>
 
       <div className="rap-volume">
-        <div className={`rap-volume-btn ${volumeOpen ? 'rap-volume-open' : ''}`} onClick={handleOpenVolumePanel}>
+        <div className={`rap-volume-btn ${volumeOpen ? 'rap-volume-open' : ''}`} onClick={() => setVolumeOpen((vol) => !vol)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path fill={volumeOpen ? sliderColor ?? '#007FFF' : color ?? '#566574'} fillRule="evenodd" d={speakerIcon} />
           </svg>
         </div>
-        <div className={`rap-volume-control-container ${!volumeOpen ? 'rap-hidden' : ''}`} onClick={() => setVolumeOpen(false)}>
+        <div className={`rap-volume-control-container ${!volumeOpen ? 'rap-hidden' : ''}`}>
           <div
             ref={volumePanel}
             className={`rap-volume-controls`}
@@ -273,6 +261,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
               </div>
             </div>
           </div>
+          <div className="rap-backdrop" onClick={() => setVolumeOpen(false)}></div>
         </div>
       </div>
 

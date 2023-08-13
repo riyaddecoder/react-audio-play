@@ -91,17 +91,15 @@
   flex-direction: column;
   align-items: center;
   display: flex;
+  z-index: 1;
 }
 .rap-container .rap-volume .rap-hidden {
   display: none;
 }
 .rap-container .rap-volume .rap-volume-control-container {
-  height: 100vw;
-  width: 100vw;
-  position: fixed;
+  position: absolute;
   left: 0;
-  top: 0;
-  z-index: 99999;
+  top: 32px;
 }
 
 .rap-container .rap-volume .rap-volume-controls .rap-slider {
@@ -122,6 +120,14 @@
 
 .rap-container svg {
   display: block;
+}
+
+.rap-backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0
 }
 
 @keyframes rapSpin {
