@@ -22,3 +22,8 @@
   background-color: #c3d5ff;
   box-shadow: 0 0 9px 7px #269eff52;
 }
+
+.custom-style .rap-container svg.rap-pp-icon:hover,
+.custom-style .rap-container .rap-volume-btn svg:hover {
+  filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.9));
+}

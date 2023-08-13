@@ -5,7 +5,8 @@ import ExampleBlock from './ExampleBlock';
 import PropsBlock from './PropsBlock';
 import TitleBlock from './TitleBlock';
 import Navbar from './Navbar';
-import './customStyle.css';
+import './customStyle1.css';
+import './customStyle2.css';
 
 const RootPage = () => {
   const [isTabVisible, setIsTabVisible] = useState(!document.hidden);
@@ -86,7 +87,8 @@ const RootPage = () => {
             {/* example 3 */}
             <ExampleBlock
               title="Example 3: Using audio callbacks"
-              code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n\tconst handlePlay = () => {\n\t\tconsole.log('Audio started playing');\n\t};\n\n\tconst handlePause = () => {\n\t\tconsole.log('Audio paused');\n\t};\n\n\tconst handleEnd = () => {\n\t\tconsole.log('Audio ended');\n\t};\n\n\tconst handleError = () => {\n\t\tconsole.log('An error has been occured');\n\t};\n\n\treturn (\n\t\t<AudioPlayer\n\t\t\tsrc="path/to/audio.mp3"\n\t\t\tonPlay={handlePlay}\n\t\t\tonPause={handlePause}\n\t\t\tonEnd={handleEnd}\n\t\t\tonError={handleError}\n\t\t/>\n\t);\n}`}
+              code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n\tconst handlePlay = () => {\n\t\tconsole.log('Audio started playing');\n\t};\n\n\tconst handlePause = () => {\n\t\tcon
+                sole.log('Audio paused');\n\t};\n\n\tconst handleEnd = () => {\n\t\tconsole.log('Audio ended');\n\t};\n\n\tconst handleError = () => {\n\t\tconsole.log('An error has been occured');\n\t};\n\n\treturn (\n\t\t<AudioPlayer\n\t\t\tsrc="path/to/audio.mp3"\n\t\t\tonPlay={handlePlay}\n\t\t\tonPause={handlePause}\n\t\t\tonEnd={handleEnd}\n\t\t\tonError={handleError}\n\t\t/>\n\t);\n}`}
             >
               <AudioPlayer
                 src={audioSrc}
@@ -120,7 +122,18 @@ const RootPage = () => {
               language="css"
               title="Example 6: Using Custom CSS"
               infoText="Use a wrapper class to avoid CSS override issues. Ex: .custom-style"
-              code={`.custom-style .rap-container {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n\tcolor: aliceblue;\n}\n\n.custom-style .rap-container .rap-pp-icon path,\n.custom-style .rap-container .rap-volume-btn path {\n\tfill: white;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress {\n\tbackground-color: #daecff;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n}\n\n.custom-style .rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #c3d5ff;\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}`}
+              code={`.custom-style .rap-container {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n\tcolor: aliceblue;\n}\n\n.custom-style .rap-container .rap-pp-icon path,\n.custom-style .rap-container .rap-volume-btn path {\n\tfill: white;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress {\n\tbackground-color: #daecff;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n}\n\n.custom-style .rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #c3d5ff;\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}\n\n.custom-style .rap-container svg.rap-pp-icon:hover,\n.custom-style .rap-container .rap-volume-btn svg:hover {\n\tfilter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.9));\n}`}
+            >
+              <AudioPlayer src={audioSrc} />
+            </ExampleBlock>
+
+            {/* example 7 */}
+            <ExampleBlock
+              className="custom-style2"
+              language="css"
+              title="Example 7: More Playing With CSS"
+              infoText="Use a wrapper class to avoid CSS override issues. Ex: .custom-style"
+              code={`.custom-style .rap-container {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n\tcolor: aliceblue;\n}\n\n.custom-style .rap-container .rap-pp-icon path,\n.custom-style .rap-container .rap-volume-btn path {\n\tfill: white;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress {\n\tbackground-color: #daecff;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n}\n\n.custom-style .rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #c3d5ff;\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}\n\n.custom-style .rap-container svg.rap-pp-icon:hover,\n.custom-style .rap-container .rap-volume-btn svg:hover {\n\tfilter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.9));\n}`}
             >
               <AudioPlayer src={audioSrc} />
             </ExampleBlock>
