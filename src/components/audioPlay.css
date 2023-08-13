@@ -96,10 +96,16 @@
 .rap-container .rap-volume .rap-hidden {
   display: none;
 }
-.rap-container .rap-volume .rap-volume-control-container {
+.rap-container .rap-volume .rap-vol-placement-top {
   position: absolute;
   left: 0;
   top: 32px;
+}
+
+.rap-container .rap-volume .rap-vol-placement-bottom {
+  position: absolute;
+  left: 0;
+  top: 230px;
 }
 
 .rap-container .rap-volume .rap-volume-controls .rap-slider {

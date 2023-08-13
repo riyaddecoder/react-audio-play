@@ -12,13 +12,14 @@ export interface AudioInterface {
   style?: React.CSSProperties;
   sliderColor?: string;
   volume?: number;
+  volumePlacement?: 'top' | 'bottom';
   onPlay?: () => void;
   onPause?: () => void;
   onEnd?: () => void;
   onError?: () => void;
 }
 
-export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backgroundColor, color, style, sliderColor, volume = 100, onPlay, onPause, onEnd, onError }) => {
+export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backgroundColor, color, style, sliderColor, volume = 100, volumePlacement = 'top', onPlay, onPause, onEnd, onError }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const currentlyDragged = useRef<HTMLDivElement | null>(null);
   const volumePanel = useRef<HTMLDivElement>(null);
@@ -240,7 +241,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
             <path fill={volumeOpen ? sliderColor ?? '#007FFF' : color ?? '#566574'} fillRule="evenodd" d={speakerIcon} />
           </svg>
         </div>
-        <div className={`rap-volume-control-container ${!volumeOpen ? 'rap-hidden' : ''}`}>
+        <div className={`${volumePlacement === 'bottom' ? 'rap-vol-placement-bottom' : 'rap-vol-placement-top'} ${!volumeOpen ? 'rap-hidden' : ''}`}>
           <div
             ref={volumePanel}
             className={`rap-volume-controls`}
