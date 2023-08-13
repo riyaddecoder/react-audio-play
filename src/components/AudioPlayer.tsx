@@ -22,7 +22,8 @@ export interface AudioInterface {
 export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backgroundColor, color, style, sliderColor, volume = 100, volumePlacement = 'top', onPlay, onPause, onEnd, onError }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const currentlyDragged = useRef<HTMLDivElement | null>(null);
-  const volumePanel = useRef<HTMLDivElement>(null);
+  const rewindPin = useRef<HTMLDivElement | null>(null);
+  const volumePin = useRef<HTMLDivElement | null>(null);
   const [canPlay, setCanPlay] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [progressBarPercent, setProgressBarPercent] = useState<number>(0);
@@ -167,8 +168,8 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
     }
   };
 
-  const handleRewindMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-    currentlyDragged.current = event.target as HTMLDivElement;
+  const handleRewindMouseDown = () => {
+    currentlyDragged.current = rewindPin.current;
 
     window.addEventListener('mousemove', rewind, false);
 
@@ -182,8 +183,8 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
     );
   };
 
-  const handleVolumeMouseDown = (event: MouseEvent | React.MouseEvent) => {
-    currentlyDragged.current = event.target as HTMLDivElement;
+  const handleVolumeMouseDown = () => {
+    currentlyDragged.current = volumePin.current;
 
     window.addEventListener('mousemove', changeVolume, false);
 
@@ -221,7 +222,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
 
       <div className="rap-controls">
         <span className="rap-current-time">{currentTime}</span>
-        <div className="rap-slider" data-direction="horizontal" onClick={rewind}>
+        <div className="rap-slider" data-direction="horizontal" onMouseDown={handleRewindMouseDown} onClick={rewind}>
           <div
             className="rap-progress"
             style={{
@@ -229,7 +230,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
               ...(sliderColor ? { backgroundColor: sliderColor } : {})
             }}
           >
-            <div className="rap-pin" data-method="rewind" onMouseDown={handleRewindMouseDown} style={sliderColor ? { backgroundColor: sliderColor } : {}}></div>
+            <div ref={rewindPin} className="rap-pin" data-method="rewind" onMouseDown={handleRewindMouseDown} style={sliderColor ? { backgroundColor: sliderColor } : {}}></div>
           </div>
         </div>
         <span className="rap-total-time">{totalTime}</span>
@@ -243,14 +244,13 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
         </div>
         <div className={`${volumePlacement === 'bottom' ? 'rap-vol-placement-bottom' : 'rap-vol-placement-top'} ${!volumeOpen ? 'rap-hidden' : ''}`}>
           <div
-            ref={volumePanel}
             className={`rap-volume-controls`}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
             }}
           >
-            <div className="rap-slider" data-direction="vertical" onClick={changeVolume}>
+            <div className="rap-slider" data-direction="vertical" onClick={changeVolume} onMouseDown={handleVolumeMouseDown}>
               <div
                 className="rap-progress"
                 style={{
@@ -258,7 +258,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
                   ...(sliderColor ? { backgroundColor: sliderColor } : {})
                 }}
               >
-                <div className="rap-pin" data-method="changeVolume" style={sliderColor ? { backgroundColor: sliderColor } : {}} onMouseDown={handleVolumeMouseDown}></div>
+                <div ref={volumePin} className="rap-pin" data-method="changeVolume" style={sliderColor ? { backgroundColor: sliderColor } : {}} onMouseDown={handleVolumeMouseDown}></div>
               </div>
             </div>
           </div>
