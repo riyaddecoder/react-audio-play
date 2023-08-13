@@ -14,7 +14,7 @@
 
 `react-audio-play` is a simple, lightweight and customizable audio player npm package for React applications. It provides an easy-to-use interface to play audio files in your React components with minimal setup.
 
-![react-audio-play](https://example.com/react-audio-play-demo.gif)
+<!-- ![react-audio-play](https://example.com/react-audio-play-demo.gif) -->
 
 ## Features
 
@@ -23,6 +23,9 @@
 - Display track progress with a customizable progress bar.
 - Trigger custom actions on audio events like onPlay, onPause, onStop, onEnd, etc.
 - Fully customizable appearance to match your application's design.
+
+## Demo
+Check [examples](https://riyaddecoder.github.io/react-audio-play/#example-usage) 
 
 ## Installation
 
@@ -42,7 +45,7 @@ To use `react-audio-play`, import the `AudioPlayer` component and provide the ne
 
 ```js
 import React from 'react';
-import AudioPlayer from 'react-audio-play';
+import { AudioPlayer } from 'react-audio-play';
 
 const App = () => {
   return (
@@ -68,11 +71,12 @@ export default App;
 - `backgroundColor` (string, optional): Set the background color of the audio player (default: `#fff`).
 - `color` (string, optional): The text and icon color of the audio player. (default: `#566574`).
 - `sliderColor` (string, optional): The color of the progress slider. (default: `#007FFF`)
+- `volumePlacement` (string, optional): Control where the volume controls are located (`top | bottom`).(default: `top`)
 
 ## Example with Custom Event Handling
 ```js
 import React from 'react';
-import AudioPlayer from 'react-audio-play';
+import { AudioPlayer } from 'react-audio-play';
 
 const App = () => {
   const handlePlay = () => {
@@ -98,7 +102,7 @@ const App = () => {
 export default App;
 ```
 ## Custom Styling
-You can easily customize the appearance of the audio player by applying your CSS styles to the AudioPlayer component or by overriding the default styles in your project's CSS.
+You can easily customize the appearance of the audio player by applying your CSS styles to the AudioPlayer component or by overriding the default styles in your project's CSS. Check [examples](https://riyaddecoder.github.io/react-audio-play/#styled-examples)
 
 ## License
 This package is open-source and distributed under the MIT License. See the [LICENSE](https://github.com/riyaddecoder/react-audio-play/blob/master/LICENSE) file for details.
@@ -106,6 +110,6 @@ This package is open-source and distributed under the MIT License. See the [LICE
 ## Contribution
 Contributions are welcome! If you find any issues or have suggestions, feel free to create an issue or submit a pull request on the [GitHub repository](https://github.com/riyaddecoder/react-audio-play/). Let's build this package together!
 
-![react-audio-play](https://example.com/react-audio-play-demo.gif)
+<!-- ![react-audio-play](https://example.com/react-audio-play-demo.gif) -->
 
 Enjoy using react-audio-play in your React applications, and we hope it enhances your audio experience with ease and flexibility. If you have any questions or need further assistance, don't hesitate to reach out to us! Happy coding! 🎶
