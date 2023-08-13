@@ -71,7 +71,7 @@ export default App;
 - `backgroundColor` (string, optional): Set the background color of the audio player (default: `#fff`).
 - `color` (string, optional): The text and icon color of the audio player. (default: `#566574`).
 - `sliderColor` (string, optional): The color of the progress slider. (default: `#007FFF`)
-- `volumePlacement` (string, optional): Control where the volume controls are located.(default: `top | bottom`)
+- `volumePlacement` (string, optional): Control where the volume controls are located (`top | bottom`).(default: `top`)
 
 ## Example with Custom Event Handling
 ```js
