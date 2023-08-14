@@ -78,17 +78,16 @@ const RootPage = () => {
 
             {/* example 2 */}
             <ExampleBlock
-              title="Example 2: Looping audio and set the volume to 50%"
-              code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tloop\n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t\tvolume={50}\n\t\t\t/>\n\t);\n}`}
+              title="Example 2: Looping audio, set the volume to 50% and volume control placement bottom"
+              code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tloop\n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t\tvolume={50}\n\t\t\t\tvolumePlacement="bottom"\n\t\t\t/>\n\t);\n}`}
             >
-              <AudioPlayer src={audioSrc} loop volume={50} />
+              <AudioPlayer src={audioSrc} loop volume={50} volumePlacement="bottom" />
             </ExampleBlock>
 
             {/* example 3 */}
             <ExampleBlock
               title="Example 3: Using audio callbacks"
-              code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n\tconst handlePlay = () => {\n\t\tconsole.log('Audio started playing');\n\t};\n\n\tconst handlePause = () => {\n\t\tcon
-                sole.log('Audio paused');\n\t};\n\n\tconst handleEnd = () => {\n\t\tconsole.log('Audio ended');\n\t};\n\n\tconst handleError = () => {\n\t\tconsole.log('An error has been occured');\n\t};\n\n\treturn (\n\t\t<AudioPlayer\n\t\t\tsrc="path/to/audio.mp3"\n\t\t\tonPlay={handlePlay}\n\t\t\tonPause={handlePause}\n\t\t\tonEnd={handleEnd}\n\t\t\tonError={handleError}\n\t\t/>\n\t);\n}`}
+              code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n\tconst handlePlay = () => {\n\t\tconsole.log('Audio started playing');\n\t};\n\n\tconst handlePause = () => {\n\t\tconsole.log('Audio paused');\n\t};\n\n\tconst handleEnd = () => {\n\t\tconsole.log('Audio ended');\n\t};\n\n\tconst handleError = () => {\n\t\tconsole.log('An error has been occured');\n\t};\n\n\treturn (\n\t\t<AudioPlayer\n\t\t\tsrc="path/to/audio.mp3"\n\t\t\tonPlay={handlePlay}\n\t\t\tonPause={handlePause}\n\t\t\tonEnd={handleEnd}\n\t\t\tonError={handleError}\n\t\t/>\n\t);\n}`}
             >
               <AudioPlayer
                 src={audioSrc}
@@ -133,7 +132,7 @@ const RootPage = () => {
               language="css"
               title="Example 7: More Playing With CSS"
               infoText="Use a wrapper class to avoid CSS override issues. Ex: .custom-style"
-              code={`.custom-style .rap-container {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n\tcolor: aliceblue;\n}\n\n.custom-style .rap-container .rap-pp-icon path,\n.custom-style .rap-container .rap-volume-btn path {\n\tfill: white;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress {\n\tbackground-color: #daecff;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n}\n\n.custom-style .rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #c3d5ff;\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}\n\n.custom-style .rap-container svg.rap-pp-icon:hover,\n.custom-style .rap-container .rap-volume-btn svg:hover {\n\tfilter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.9));\n}`}
+              code={`.custom-style .rap-container {\n\tbackground-color: #e4e4e4;\n\tcolor: #566574;\n\tborder-radius: 20px;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress {\n\tbackground-color: #959595;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #566574;\n\theight: 18px;\n\twidth: 18px;\n\tborder-radius: 10px;\n}\n\n.custom-style .rap-container .rap-controls .rap-slider .rap-progress .rap-pin {\n\ttop: -5px;\n}\n\n.custom-style .rap-container .rap-controls .rap-slider {\n\theight: 8px;\n\tborder-radius: 4px;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-btn.rap-volume-open path {\n\tfill: #000;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #e4e4e4;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls .rap-slider,\n.custom-style .rap-container .rap-volume .rap-volume-controls .rap-slider .rap-progress {\n\twidth: 8px;\n}`}
             >
               <AudioPlayer src={audioSrc} />
             </ExampleBlock>

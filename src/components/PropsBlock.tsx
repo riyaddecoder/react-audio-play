@@ -39,6 +39,10 @@ const PropsBlock = () => {
         <li>
           <code className="bg-gray-100 p-1">sliderColor</code> (string, optional): The color of the progress slider (default: <code className="bg-gray-100 p-1">#007FFF</code>).
         </li>
+        <li>
+          <code className="bg-gray-100 p-1">volumePlacement</code> (string, optional): Control where the volume controls are located (<code className="bg-gray-100 p-1">top | bottom</code>) (default:{' '}
+          <code className="bg-gray-100 p-1">bottom</code>).
+        </li>
       </ul>
     </section>
   );

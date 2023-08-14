@@ -24,6 +24,10 @@
   border-radius: 4px;
 }
 
+.custom-style2 .rap-container .rap-volume .rap-volume-btn.rap-volume-open path {
+  fill: #000;
+}
+
 .custom-style2 .rap-container .rap-volume .rap-volume-controls {
   background-color: #e4e4e4;
 }
