@@ -41,7 +41,7 @@ export default function App() {
 			onError={handleError}
 		/>
 	);
-}`,children:(0,c.jsx)(E,{src:r,onPlay:()=>console.log("Audio started playing"),onEnd:()=>console.log("Audio ended"),onError:(e,t)=>console.log(t),onPause:()=>console.log("Audio paused")})}),(0,c.jsx)("div",{id:"styled-examples"}),(0,c.jsx)(j,{title:"Example 4: Darkmode using basic style props",code:`import { AudioPlayer } from 'react-audio-play';
+}`,children:(0,c.jsx)(E,{src:r,onPlay:()=>console.log("Audio started playing"),onEnd:()=>console.log("Audio ended"),onError:(e,t)=>console.log(e,t),onPause:()=>console.log("Audio paused")})}),(0,c.jsx)("div",{id:"styled-examples"}),(0,c.jsx)(j,{title:"Example 4: Darkmode using basic style props",code:`import { AudioPlayer } from 'react-audio-play';
 
 export default function App() {
   return (

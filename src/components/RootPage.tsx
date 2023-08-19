@@ -93,7 +93,7 @@ const RootPage = () => {
                 src={audioSrc}
                 onPlay={() => console.log('Audio started playing')}
                 onEnd={() => console.log('Audio ended')}
-                onError={(event, errorMessage) => console.log(errorMessage)}
+                onError={(event, errorMessage) => console.log(event, errorMessage)}
                 onPause={() => console.log('Audio paused')}
               />
             </ExampleBlock>
