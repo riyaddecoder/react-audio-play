@@ -5,6 +5,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import styles from 'rollup-plugin-styles';
+import image from '@rollup/plugin-image';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('./package.json');
@@ -24,7 +25,7 @@ export default [
         sourcemap: true
       }
     ],
-    plugins: [peerDepsExternal(), resolve(), styles(), commonjs(), typescript({ tsconfig: './tsconfig.json' }), terser()],
+    plugins: [peerDepsExternal(), resolve(), styles(), commonjs(), typescript({ tsconfig: './tsconfig.json' }), terser(), image()],
     external: ['react', 'react-dom', 'styled-components']
   },
   {

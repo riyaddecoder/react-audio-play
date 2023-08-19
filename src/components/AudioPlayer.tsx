@@ -16,7 +16,7 @@ export interface AudioInterface {
   onPlay?: () => void;
   onPause?: () => void;
   onEnd?: () => void;
-  onError?: () => void;
+  onError?: (event: React.SyntheticEvent<HTMLAudioElement, Event>, errorMessage: string) => void;
 }
 
 export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backgroundColor, color, style, sliderColor, volume = 100, volumePlacement = 'top', onPlay, onPause, onEnd, onError }) => {
@@ -47,9 +47,32 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
     setCanPlay(true);
   };
 
-  const handleOnError = () => {
+  const handleOnError = (event: React.SyntheticEvent<HTMLAudioElement, Event>) => {
     if (onError) {
-      onError();
+      const mediaError = (event.target as HTMLAudioElement).error;
+      let errorMessage = 'An unknown error occurred.';
+
+      if (mediaError?.code) {
+        switch (mediaError?.code) {
+          case mediaError.MEDIA_ERR_ABORTED:
+            errorMessage = 'The media playback was aborted.';
+            break;
+          case mediaError.MEDIA_ERR_NETWORK:
+            errorMessage = 'A network error caused the media to fail.';
+            break;
+          case mediaError.MEDIA_ERR_DECODE:
+            errorMessage = 'The media playback was aborted due to a decoding error.';
+            break;
+          case mediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+            errorMessage = 'The media source format is not supported.';
+            break;
+          default:
+            errorMessage = 'An unknown error occurred.';
+            break;
+        }
+      }
+
+      onError(event, errorMessage);
     }
   };
 

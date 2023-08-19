@@ -20,7 +20,7 @@
 .rap-container .rap-spinner {
   width: 18px;
   height: 18px;
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/loading.png);
+  background-image: url('../assets/loading.png');
   background-size: cover;
   background-repeat: no-repeat;
   animation: rapSpin 0.4s linear infinite;
@@ -133,7 +133,7 @@
   width: 100vw;
   height: 100vh;
   top: 0;
-  left: 0
+  left: 0;
 }
 
 @keyframes rapSpin {
