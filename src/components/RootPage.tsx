@@ -87,7 +87,7 @@ const RootPage = () => {
             {/* example 3 */}
             <ExampleBlock
               title="Example 3: Using audio callbacks"
-              code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n\tconst handlePlay = () => {\n\t\tconsole.log('Audio started playing');\n\t};\n\n\tconst handlePause = () => {\n\t\tconsole.log('Audio paused');\n\t};\n\n\tconst handleEnd = () => {\n\t\tconsole.log('Audio ended');\n\t};\n\n\tconst handleError = () => {\n\t\tconsole.log('An error has been occured');\n\t};\n\n\treturn (\n\t\t<AudioPlayer\n\t\t\tsrc="path/to/audio.mp3"\n\t\t\tonPlay={handlePlay}\n\t\t\tonPause={handlePause}\n\t\t\tonEnd={handleEnd}\n\t\t\tonError={handleError}\n\t\t/>\n\t);\n}`}
+              code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n\tconst handlePlay = () => {\n\t\tconsole.log('Audio started playing');\n\t};\n\n\tconst handlePause = () => {\n\t\tconsole.log('Audio paused');\n\t};\n\n\tconst handleEnd = () => {\n\t\tconsole.log('Audio ended');\n\t};\n\n\tconst handleError = (event, errorMessage) => {\n\t\tconsole.log(errorMessage);\n\t};\n\n\treturn (\n\t\t<AudioPlayer\n\t\t\tsrc="path/to/audio.mp3"\n\t\t\tonPlay={handlePlay}\n\t\t\tonPause={handlePause}\n\t\t\tonEnd={handleEnd}\n\t\t\tonError={handleError}\n\t\t/>\n\t);\n}`}
             >
               <AudioPlayer
                 src={audioSrc}
