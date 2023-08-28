@@ -61,17 +61,23 @@ export default App;
 ## Props
 `react-audio-play` accepts the following props:
 
+- `className` (string, optional): A CSS class name for styling the component.
 - `src` (string, required): The URL or file path of the audio file to be played.
-- `loop` (boolean, optional): Set to true to loop the audio playback (default: false).
-- `volume` (number, optional): The initial volume level (0 to 100) of the audio (default: `100`).
+- `preload` (string, optional): Specifies the preload behavior for the audio file. Possible values are:
+    - `auto`: The audio data is loaded as soon as possible.
+    - `metadata`: Only metadata (e.g., duration) is loaded.
+    - `none`: No preloading. Audio data is only loaded when requested.
+- `loop` (boolean, optional): Set this to `true` to enable looping of the audio playback. Default is `false`.
+- `volume` (number, optional): The initial volume level of the audio, ranging from 0 to 100. Default is `100`.
 - `onPlay` (function, optional): Callback function to execute when the audio starts playing.
 - `onPause` (function, optional): Callback function to execute when the audio is paused.
 - `onEnd` (function, optional): Callback function to execute when the audio playback ends.
 - `onError` (function, optional): Callback function to execute if there's an error loading or playing the audio.
-- `backgroundColor` (string, optional): Set the background color of the audio player (default: `#fff`).
-- `color` (string, optional): The text and icon color of the audio player. (default: `#566574`).
-- `sliderColor` (string, optional): The color of the progress slider. (default: `#007FFF`)
-- `volumePlacement` (string, optional): Control where the volume controls are located (`top | bottom`).(default: `top`)
+- `backgroundColor` (string, optional): The background color of the audio player. Default is `#fff`.
+- `color` (string, optional): The text and icon color of the audio player. Default is `#566574`.
+- `sliderColor` (string, optional): The color of the progress slider. Default is `#007FFF`.
+- `volumePlacement` (string, optional): Specifies the placement of the volume controls. Possible values are `top` and `bottom`. Default is `top`.
+- `style` (object, optional): An object containing additional inline styles for the component.
 
 ## Example with Custom Event Handling
 ```js
