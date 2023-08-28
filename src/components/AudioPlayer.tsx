@@ -7,6 +7,7 @@ import './audioPlay.css';
 export interface AudioInterface {
   src: string;
   loop?: boolean;
+  preload?: 'auto' | 'metadata' | 'none';
   backgroundColor?: string;
   color?: string;
   style?: React.CSSProperties;
@@ -19,19 +20,35 @@ export interface AudioInterface {
   onError?: (event: React.SyntheticEvent<HTMLAudioElement, Event>, errorMessage: string) => void;
 }
 
-export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backgroundColor, color, style, sliderColor, volume = 100, volumePlacement = 'top', onPlay, onPause, onEnd, onError }) => {
+export const AudioPlayer: React.FC<AudioInterface> = ({
+  src,
+  loop = false,
+  preload = 'auto',
+  backgroundColor,
+  color,
+  style,
+  sliderColor,
+  volume = 100,
+  volumePlacement = 'top',
+  onPlay,
+  onPause,
+  onEnd,
+  onError
+}) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const currentlyDragged = useRef<HTMLDivElement | null>(null);
   const rewindPin = useRef<HTMLDivElement | null>(null);
   const volumePin = useRef<HTMLDivElement | null>(null);
-  const [canPlay, setCanPlay] = useState<boolean>(false);
+  const [canPlay, setCanPlay] = useState<boolean>(preload === 'none');
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [progressBarPercent, setProgressBarPercent] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState<string>('0:00');
-  const [totalTime, setTotalTime] = useState<string>('0:00');
+  const [totalTime, setTotalTime] = useState<string>('--:--');
   const [volumeOpen, setVolumeOpen] = useState<boolean>(false);
   const [volumeProgress, setVolumeProgress] = useState<number>(100);
   const [speakerIcon, setSpeakerIcon] = useState<string>(getVolumePath(volume));
+  const [coefficient, setCoefficient] = useState<number>(0);
+  const [hasError, setHasError] = useState<boolean>(false);
 
   useEffect(() => {
     if (!isNaN(volume)) {
@@ -47,7 +64,17 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
     setCanPlay(true);
   };
 
+  const handleReload = () => {
+    if (audioRef.current) {
+      setCanPlay(false);
+      setHasError(false);
+      audioRef.current.load();
+    }
+  };
+
   const handleOnError = (event: React.SyntheticEvent<HTMLAudioElement, Event>) => {
+    setCanPlay(true);
+    setHasError(true);
     if (onError) {
       const mediaError = (event.target as HTMLAudioElement).error;
       let errorMessage = 'An unknown error occurred.';
@@ -109,7 +136,11 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
   };
 
   const handleLoadedMetaData = () => {
-    setTotalTime(formatTime(audioRef.current?.duration ?? 0));
+    if (audioRef.current?.duration) {
+      setTotalTime(formatTime(audioRef.current.duration ?? 0));
+      const currentTime = audioRef.current.duration * coefficient;
+      audioRef.current.currentTime = currentTime;
+    }
   };
 
   function getVolumePath(volumeLevel: number) {
@@ -129,6 +160,10 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
 
   const togglePlay = () => {
     if (audioRef.current) {
+      if (preload === 'none' && !audioRef.current.duration) {
+        setCanPlay(false);
+      }
+
       if (audioRef.current.paused) {
         audioRef.current.play();
         setIsPlaying(true);
@@ -180,8 +215,14 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
 
   const rewind = (event: MouseEvent | React.MouseEvent<HTMLDivElement>) => {
     if (inRange(event) && audioRef.current) {
-      const currentTime = audioRef.current.duration * getCoefficient(event);
-      audioRef.current.currentTime = currentTime;
+      if (preload === 'none' && !audioRef.current.duration) {
+        setCanPlay(false);
+        audioRef.current.load();
+        setCoefficient(getCoefficient(event));
+      } else if (audioRef.current.duration) {
+        const currentTime = audioRef.current.duration * getCoefficient(event);
+        audioRef.current.currentTime = currentTime;
+      }
     }
   };
 
@@ -230,12 +271,22 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
         ...style
       }}
     >
-      {!canPlay && (
+      {hasError && (
+        <span title="An error has occurred" className="rap-pp-button" onClick={handleReload}>
+          <svg width="24px" height="24px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path
+              fill={color ?? '#566574'}
+              d="M7.248 1.307A.75.75 0 118.252.193l2.5 2.25a.75.75 0 010 1.114l-2.5 2.25a.75.75 0 01-1.004-1.114l1.29-1.161a4.5 4.5 0 103.655 2.832.75.75 0 111.398-.546A6 6 0 118.018 2l-.77-.693z"
+            />
+          </svg>
+        </span>
+      )}
+      {!canPlay && !hasError && (
         <div className="rap-loading">
           <div className="rap-spinner"></div>
         </div>
       )}
-      {canPlay && (
+      {canPlay && !hasError && (
         <div className="rap-pp-button" onClick={() => togglePlay()}>
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="24" viewBox="0 0 18 24" className="rap-pp-icon">
             <path fill={color ?? '#566574'} fillRule="evenodd" d={isPlaying ? iconPaths.pause : iconPaths.play} />
@@ -292,6 +343,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({ src, loop = false, backg
       <audio
         ref={audioRef}
         loop={loop}
+        preload={preload}
         onCanPlay={handleCanPlay}
         onEnded={handleEnded}
         onError={handleOnError}
