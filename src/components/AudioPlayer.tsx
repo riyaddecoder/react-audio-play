@@ -5,6 +5,7 @@ import { getRangeBox } from '../helpers/utils/getRangeBox';
 import './audioPlay.css';
 
 export interface AudioInterface {
+  className?: string;
   src: string;
   loop?: boolean;
   preload?: 'auto' | 'metadata' | 'none';
@@ -21,6 +22,7 @@ export interface AudioInterface {
 }
 
 export const AudioPlayer: React.FC<AudioInterface> = ({
+  className = '',
   src,
   loop = false,
   preload = 'auto',
@@ -264,7 +266,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
 
   return (
     <div
-      className="rap-container"
+      className={`rap-container ${className}`}
       style={{
         ...(backgroundColor ? { backgroundColor: backgroundColor } : {}),
         ...(color ? { color: color } : {}),
@@ -273,7 +275,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     >
       {hasError && (
         <span title="An error has occurred" className="rap-pp-button" onClick={handleReload}>
-          <svg width="24px" height="24px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <svg width="24px" height="24px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none" className="rap-pp-icon">
             <path
               fill={color ?? '#566574'}
               d="M7.248 1.307A.75.75 0 118.252.193l2.5 2.25a.75.75 0 010 1.114l-2.5 2.25a.75.75 0 01-1.004-1.114l1.29-1.161a4.5 4.5 0 103.655 2.832.75.75 0 111.398-.546A6 6 0 118.018 2l-.77-.693z"
