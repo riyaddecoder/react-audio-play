@@ -5,6 +5,7 @@ import ExampleBlock from './ExampleBlock';
 import PropsBlock from './PropsBlock';
 import TitleBlock from './TitleBlock';
 import Navbar from './Navbar';
+import MultipleExampleBlock from './MultipleExampleBlock';
 import './customStyle1.css';
 import './customStyle2.css';
 
@@ -116,26 +117,24 @@ const RootPage = () => {
             </ExampleBlock>
 
             {/* example 6 */}
-            <ExampleBlock
-              className="custom-style"
-              language="css"
+            <MultipleExampleBlock
               title="Example 6: Using Custom CSS"
               infoText="Use a wrapper class to avoid CSS override issues. Ex: .custom-style"
-              code={`.custom-style .rap-container {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n\tcolor: aliceblue;\n}\n\n.custom-style .rap-container .rap-pp-icon path,\n.custom-style .rap-container .rap-volume-btn path {\n\tfill: white;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress {\n\tbackground-color: #daecff;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n}\n\n.custom-style .rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #c3d5ff;\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}\n\n.custom-style .rap-container svg.rap-pp-icon:hover,\n.custom-style .rap-container .rap-volume-btn svg:hover {\n\tfilter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.9));\n}`}
+              cssCode={`.custom-style.rap-container {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n\tcolor: aliceblue;\n}\n\n.custom-style.rap-container .rap-pp-icon path,\n.custom-style.rap-container .rap-volume-btn path {\n\tfill: white;\n}\n\n.custom-style.rap-container .rap-slider .rap-progress {\n\tbackground-color: #daecff;\n}\n\n.custom-style.rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n}\n\n.custom-style.rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #c3d5ff;\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}\n\n.custom-style.rap-container svg.rap-pp-icon:hover,\n.custom-style.rap-container .rap-volume-btn svg:hover {\n\tfilter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.9));\n}`}
+              jsCode={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tclassName="custom-style"\n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t/>\n\t);\n}`}
             >
-              <AudioPlayer src={audioSrc} />
-            </ExampleBlock>
+              <AudioPlayer src={audioSrc} className="custom-style" />
+            </MultipleExampleBlock>
 
             {/* example 7 */}
-            <ExampleBlock
-              className="custom-style2"
-              language="css"
+            <MultipleExampleBlock
               title="Example 7: More Playing With CSS"
               infoText="Use a wrapper class to avoid CSS override issues. Ex: .custom-style"
-              code={`.custom-style .rap-container {\n\tbackground-color: #e4e4e4;\n\tcolor: #566574;\n\tborder-radius: 20px;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress {\n\tbackground-color: #959595;\n}\n\n.custom-style .rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #566574;\n\theight: 18px;\n\twidth: 18px;\n\tborder-radius: 10px;\n}\n\n.custom-style .rap-container .rap-controls .rap-slider .rap-progress .rap-pin {\n\ttop: -5px;\n}\n\n.custom-style .rap-container .rap-controls .rap-slider {\n\theight: 8px;\n\tborder-radius: 4px;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-btn.rap-volume-open path {\n\tfill: #000;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #e4e4e4;\n}\n\n.custom-style .rap-container .rap-volume .rap-volume-controls .rap-slider,\n.custom-style .rap-container .rap-volume .rap-volume-controls .rap-slider .rap-progress {\n\twidth: 8px;\n}`}
+              cssCode={`.custom-style.rap-container {\n\tbackground-color: #e4e4e4;\n\tcolor: #566574;\n\tborder-radius: 20px;\n}\n\n.custom-style.rap-container .rap-slider .rap-progress {\n\tbackground-color: #959595;\n}\n\n.custom-style.rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #566574;\n\theight: 18px;\n\twidth: 18px;\n\tborder-radius: 10px;\n}\n\n.custom-style.rap-container .rap-controls .rap-slider .rap-progress .rap-pin {\n\ttop: -5px;\n}\n\n.custom-style.rap-container .rap-controls .rap-slider {\n\theight: 8px;\n\tborder-radius: 4px;\n}\n\n.custom-style.rap-container .rap-volume .rap-volume-btn.rap-volume-open path {\n\tfill: #000;\n}\n\n.custom-style.rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #e4e4e4;\n}\n\n.custom-style.rap-container .rap-volume .rap-volume-controls .rap-slider,\n.custom-style.rap-container .rap-volume .rap-volume-controls .rap-slider .rap-progress {\n\twidth: 8px;\n}`}
+              jsCode={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tclassName="custom-style"\n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t/>\n\t);\n}`}
             >
-              <AudioPlayer src={audioSrc} />
-            </ExampleBlock>
+              <AudioPlayer src={audioSrc} className="custom-style2" />
+            </MultipleExampleBlock>
           </section>
         </div>
       </main>
