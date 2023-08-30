@@ -8,6 +8,11 @@ const MUSICS = [
     url: 'https://github.com/riyaddecoder/audio-files/raw/master/Kotha%20Koiyo%20Na%20-%20Coke%20Studio%20Bangla.mp3',
     title: 'Kotha koio na - Coke Studio',
     sourceLink: 'https://youtu.be/a7V9bUwc4cU?si=WyOopTUwhjZuLwZs'
+  },
+  {
+    url: 'https://github.com/riyaddecoder/audio-files/raw/master/Anmone2-Aurthohin.mp3',
+    title: 'Anmone 2 - Aurthohin',
+    sourceLink: 'https://youtu.be/3I3l-x93kOY?si=c9Uymhr7i3r2VN7y'
   }
 ];
 
