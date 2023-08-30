@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Prism from 'prismjs';
 import { AudioPlayer } from 'react-audio-play';
 import ExampleBlock from './ExampleBlock';
@@ -8,8 +8,11 @@ import Navbar from './Navbar';
 import MultipleExampleBlock from './MultipleExampleBlock';
 import './customStyle1.css';
 import './customStyle2.css';
+import { Music } from '../helpers/Music';
+import SourceLink from './SourceLink';
 
 const RootPage = () => {
+  const music = useRef(new Music());
   const [isTabVisible, setIsTabVisible] = useState(!document.hidden);
 
   useEffect(() => {
@@ -46,8 +49,6 @@ const RootPage = () => {
     }
   }, [isTabVisible]);
 
-  const audioSrc = 'https://download.samplelib.com/mp3/sample-12s.mp3';
-
   return (
     <div className="bg-gray-100 min-h-screen">
       <Navbar />
@@ -74,7 +75,8 @@ const RootPage = () => {
               title="Example 1: Basic usage with default props"
               code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return <AudioPlayer src="path/to/audio.mp3" />;\n}`}
             >
-              <AudioPlayer src={audioSrc} />
+              <AudioPlayer src={music.current.nextMusic().url} />
+              <SourceLink title={music.current.getCurrentMusic().title} url={music.current.getCurrentMusic().sourceLink} />
             </ExampleBlock>
 
             {/* example 2 */}
@@ -82,7 +84,8 @@ const RootPage = () => {
               title="Example 2: Looping audio, set the volume to 50% and volume control placement bottom"
               code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tloop\n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t\tvolume={50}\n\t\t\t\tvolumePlacement="bottom"\n\t\t\t/>\n\t);\n}`}
             >
-              <AudioPlayer src={audioSrc} loop volume={50} volumePlacement="bottom" />
+              <AudioPlayer src={music.current.nextMusic().url} loop volume={50} volumePlacement="bottom" />
+              <SourceLink title={music.current.getCurrentMusic().title} url={music.current.getCurrentMusic().sourceLink} />
             </ExampleBlock>
 
             {/* example 3 */}
@@ -91,12 +94,13 @@ const RootPage = () => {
               code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n\tconst handlePlay = () => {\n\t\tconsole.log('Audio started playing');\n\t};\n\n\tconst handlePause = () => {\n\t\tconsole.log('Audio paused');\n\t};\n\n\tconst handleEnd = () => {\n\t\tconsole.log('Audio ended');\n\t};\n\n\tconst handleError = (event, errorMessage) => {\n\t\tconsole.log(errorMessage);\n\t};\n\n\treturn (\n\t\t<AudioPlayer\n\t\t\tsrc="path/to/audio.mp3"\n\t\t\tonPlay={handlePlay}\n\t\t\tonPause={handlePause}\n\t\t\tonEnd={handleEnd}\n\t\t\tonError={handleError}\n\t\t/>\n\t);\n}`}
             >
               <AudioPlayer
-                src={audioSrc}
+                src={music.current.nextMusic().url}
                 onPlay={() => console.log('Audio started playing')}
                 onEnd={() => console.log('Audio ended')}
                 onError={(event, errorMessage) => console.log(event, errorMessage)}
                 onPause={() => console.log('Audio paused')}
               />
+              <SourceLink title={music.current.getCurrentMusic().title} url={music.current.getCurrentMusic().sourceLink} />
             </ExampleBlock>
 
             {/* example 4 */}
@@ -105,7 +109,8 @@ const RootPage = () => {
               title="Example 4: Darkmode using basic style props"
               code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t\tcolor="#cfcfcf"\n\t\t\t\tsliderColor="#94b9ff"\n\t\t\t\tbackgroundColor="#2c2828"\n\t\t\t/>\n\t);\n}`}
             >
-              <AudioPlayer src={audioSrc} backgroundColor="#2c2828" color="#cfcfcf" sliderColor="#94b9ff" />
+              <AudioPlayer src={music.current.nextMusic().url} backgroundColor="#2c2828" color="#cfcfcf" sliderColor="#94b9ff" />
+              <SourceLink title={music.current.getCurrentMusic().title} url={music.current.getCurrentMusic().sourceLink} />
             </ExampleBlock>
 
             {/* example 5 */}
@@ -113,7 +118,8 @@ const RootPage = () => {
               title="Example 5: Using Style Object"
               code={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t\tcolor="#f7b5cd"\n\t\t\t\tsliderColor="#ff669d"\n\t\t\t\tstyle={{ background: '#000', borderRadius: '15px', padding: '30px' }}\n\t\t\t/>\n\t);\n}`}
             >
-              <AudioPlayer src={audioSrc} color="#f7b5cd" sliderColor="#ff669d" style={{ background: '#000', borderRadius: '15px', padding: '30px' }} />
+              <AudioPlayer src={music.current.nextMusic().url} color="#f7b5cd" sliderColor="#ff669d" style={{ background: '#000', borderRadius: '15px', padding: '30px' }} />
+              <SourceLink title={music.current.getCurrentMusic().title} url={music.current.getCurrentMusic().sourceLink} />
             </ExampleBlock>
 
             {/* example 6 */}
@@ -123,7 +129,8 @@ const RootPage = () => {
               cssCode={`.custom-style.rap-container {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n\tcolor: aliceblue;\n}\n\n.custom-style.rap-container .rap-pp-icon path,\n.custom-style.rap-container .rap-volume-btn path {\n\tfill: white;\n}\n\n.custom-style.rap-container .rap-slider .rap-progress {\n\tbackground-color: #daecff;\n}\n\n.custom-style.rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #000000;\n\tbackground-image: linear-gradient(147deg, #000000 0%, #04619f 74%);\n}\n\n.custom-style.rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #c3d5ff;\n\tbox-shadow: 0 0 9px 7px #269eff52;\n}\n\n.custom-style.rap-container svg.rap-pp-icon:hover,\n.custom-style.rap-container .rap-volume-btn svg:hover {\n\tfilter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.9));\n}`}
               jsCode={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tclassName="custom-style"\n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t/>\n\t);\n}`}
             >
-              <AudioPlayer src={audioSrc} className="custom-style" />
+              <AudioPlayer src={music.current.nextMusic().url} className="custom-style" />
+              <SourceLink title={music.current.getCurrentMusic().title} url={music.current.getCurrentMusic().sourceLink} />
             </MultipleExampleBlock>
 
             {/* example 7 */}
@@ -133,7 +140,8 @@ const RootPage = () => {
               cssCode={`.custom-style.rap-container {\n\tbackground-color: #e4e4e4;\n\tcolor: #566574;\n\tborder-radius: 20px;\n}\n\n.custom-style.rap-container .rap-slider .rap-progress {\n\tbackground-color: #959595;\n}\n\n.custom-style.rap-container .rap-slider .rap-progress .rap-pin {\n\tbackground-color: #566574;\n\theight: 18px;\n\twidth: 18px;\n\tborder-radius: 10px;\n}\n\n.custom-style.rap-container .rap-controls .rap-slider .rap-progress .rap-pin {\n\ttop: -5px;\n}\n\n.custom-style.rap-container .rap-controls .rap-slider {\n\theight: 8px;\n\tborder-radius: 4px;\n}\n\n.custom-style.rap-container .rap-volume .rap-volume-btn.rap-volume-open path {\n\tfill: #000;\n}\n\n.custom-style.rap-container .rap-volume .rap-volume-controls {\n\tbackground-color: #e4e4e4;\n}\n\n.custom-style.rap-container .rap-volume .rap-volume-controls .rap-slider,\n.custom-style.rap-container .rap-volume .rap-volume-controls .rap-slider .rap-progress {\n\twidth: 8px;\n}`}
               jsCode={`import { AudioPlayer } from 'react-audio-play';\n\nexport default function App() {\n  return (\n\t\t <AudioPlayer \n\t\t\t\tclassName="custom-style"\n\t\t\t\tsrc="path/to/audio.mp3"\n\t\t\t/>\n\t);\n}`}
             >
-              <AudioPlayer src={audioSrc} className="custom-style2" />
+              <AudioPlayer src={music.current.nextMusic().url} className="custom-style2" />
+              <SourceLink title={music.current.getCurrentMusic().title} url={music.current.getCurrentMusic().sourceLink} />
             </MultipleExampleBlock>
           </section>
         </div>
