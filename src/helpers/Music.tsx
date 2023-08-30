@@ -13,15 +13,28 @@ const MUSICS = [
     url: 'https://github.com/riyaddecoder/audio-files/raw/master/Anmone2-Aurthohin.mp3',
     title: 'Anmone 2 - Aurthohin',
     sourceLink: 'https://youtu.be/3I3l-x93kOY?si=c9Uymhr7i3r2VN7y'
+  },
+  {
+    url: 'https://github.com/riyaddecoder/audio-files/raw/master/Poth%20Chola%20-%20Artcell.mp3',
+    title: 'Poth Chola - Artcell',
+    sourceLink: 'https://youtu.be/CKfhGvUPXkY?si=NSEmDY1T-gsUigSv'
   }
 ];
 
 export class Music {
   private currentMusic = MUSICS[0];
+  private musicIndexes = new Set();
 
   nextMusic = () => {
-    const number = Math.floor(Math.random() * MUSICS.length);
+    if (MUSICS.length <= this.musicIndexes.size) {
+      this.musicIndexes.clear();
+    }
+    let number;
+    do {
+      number = Math.floor(Math.random() * MUSICS.length);
+    } while (this.musicIndexes.has(number));
     this.currentMusic = MUSICS[number];
+    this.musicIndexes.add(number);
     return MUSICS[number];
   };
 
