@@ -55,10 +55,17 @@ const PropsBlock = () => {
         </li>
         <li className="mt-2">
           <code className="bg-gray-100 p-1">sliderColor</code> (string, optional): The color of the progress slider (default: <code className="bg-gray-100 p-1">#007FFF</code>).
+          <li className="mt-2">
+            <code className="bg-gray-100 p-1">volumePlacement</code> (string, optional): Control where the volume controls are located (<code className="bg-gray-100 p-1">top | bottom</code>) (default:{' '}
+            <code className="bg-gray-100 p-1">bottom</code>).
+          </li>
         </li>
         <li className="mt-2">
-          <code className="bg-gray-100 p-1">volumePlacement</code> (string, optional): Control where the volume controls are located (<code className="bg-gray-100 p-1">top | bottom</code>) (default:{' '}
-          <code className="bg-gray-100 p-1">bottom</code>).
+          <code className="bg-gray-100 p-1">width</code> (string, optional): The width of the audio player. Use this prop to set the width of the player. For example,{' '}
+          <code className="bg-gray-100 p-1">&quot;100%&quot;</code>, <code className="bg-gray-100 p-1">&quot;300px&quot;</code>, etc.
+        </li>
+        <li className="mt-2">
+          <code className="bg-gray-100 p-1">style</code> (string, optional): An object containing additional inline styles for the component.
         </li>
       </ul>
     </section>

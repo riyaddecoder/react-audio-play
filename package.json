@@ -63,7 +63,7 @@
     "parcel": "^2.9.3",
     "prism-theme-vars": "^0.2.4",
     "prismjs": "^1.29.0",
-    "react-audio-play": "^0.0.12",
+    "react-audio-play": "^0.0.13",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "typescript": "^5.1.6"
