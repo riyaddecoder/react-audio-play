@@ -1,4 +1,5 @@
 import React from 'react';
+import CommandLineCode from './CommandLineCode';
 
 const TitleBlock = () => (
   <section>
@@ -7,11 +8,11 @@ const TitleBlock = () => (
     <ol className="list-decimal list-inside mt-4 text-gray-800">
       <li className="mb-2">
         Install the package using npm:
-        <code className="bg-gray-100 p-1 mx-2">npm install react-audio-play</code>
+        <CommandLineCode code="npm install react-audio-play" />
       </li>
       <li className="mb-2">
         Alternatively, install with yarn:
-        <code className="bg-gray-100 p-1 mx-2">yarn add react-audio-play</code>
+        <CommandLineCode code="yarn add react-audio-play" />
       </li>
       <li className="mb-2">
         Import and use the <code className="bg-gray-100 p-1">AudioPlayer</code> component in your project.
