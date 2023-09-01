@@ -10,6 +10,7 @@ import './customStyle1.css';
 import './customStyle2.css';
 import { Music } from '../helpers/Music';
 import SourceLink from './SourceLink';
+import Footer from './Footer';
 
 const RootPage = () => {
   const music = useRef(new Music());
@@ -147,12 +148,7 @@ const RootPage = () => {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-200 p-4 rounded-b-md shadow-lg mt-8">
-        <p className="text-blue-500 text-center text-xl font-bold pb-2">
-          Copyright © {new Date().getFullYear()} <a href="https://github.com/riyaddecoder">Shahidul Alam Riyad</a>. All rights reserved.
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 };
