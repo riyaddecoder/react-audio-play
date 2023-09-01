@@ -77,6 +77,7 @@ export default App;
 - `color` (string, optional): The text and icon color of the audio player. Default is `#566574`.
 - `sliderColor` (string, optional): The color of the progress slider. Default is `#007FFF`.
 - `volumePlacement` (string, optional): Specifies the placement of the volume controls. Possible values are `top` and `bottom`. Default is `top`.
+- `width` (string, optional): The width of the audio player. Use this prop to set the width of the player. For example, `"100%"`, `"300px"`, etc.
 - `style` (object, optional): An object containing additional inline styles for the component.
 
 ## Example with Custom Event Handling

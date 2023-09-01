@@ -11,6 +11,7 @@ export interface AudioInterface {
   preload?: 'auto' | 'metadata' | 'none';
   backgroundColor?: string;
   color?: string;
+  width?: number | string;
   style?: React.CSSProperties;
   sliderColor?: string;
   volume?: number;
@@ -28,6 +29,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
   preload = 'auto',
   backgroundColor,
   color,
+  width,
   style,
   sliderColor,
   volume = 100,
@@ -270,6 +272,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
       style={{
         ...(backgroundColor ? { backgroundColor: backgroundColor } : {}),
         ...(color ? { color: color } : {}),
+        ...(width ? { width: width } : {}),
         ...style
       }}
     >
