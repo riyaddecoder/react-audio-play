@@ -14,6 +14,13 @@
   background-color: #fff;
   color: #55606e;
 }
+.rap-container .rap-current-time,
+.rap-container .rap-total-time {
+  min-width: 40px;
+}
+.rap-container .rap-total-time {
+  text-align: right;
+}
 .rap-container .rap-pp-button {
   cursor: pointer;
 }
@@ -58,8 +65,8 @@
   margin-right: 24px;
 }
 .rap-container .rap-controls .rap-slider {
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-left: 12px;
+  margin-right: 12px;
   border-radius: 2px;
   height: 4px;
 }
