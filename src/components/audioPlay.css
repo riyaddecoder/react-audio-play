@@ -14,6 +14,9 @@
   background-color: #fff;
   color: #55606e;
 }
+.rap-container:focus {
+  outline: none;
+}
 .rap-container .rap-current-time,
 .rap-container .rap-total-time {
   min-width: 40px;

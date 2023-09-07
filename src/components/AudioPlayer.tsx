@@ -16,6 +16,7 @@ export interface AudioInterface {
   sliderColor?: string;
   volume?: number;
   volumePlacement?: 'top' | 'bottom';
+  hasKeyBindings?: boolean;
   onPlay?: () => void;
   onPause?: () => void;
   onEnd?: () => void;
@@ -34,6 +35,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
   sliderColor,
   volume = 100,
   volumePlacement = 'top',
+  hasKeyBindings = true,
   onPlay,
   onPause,
   onEnd,
@@ -266,8 +268,49 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     );
   };
 
+  const adjustAudioTime = (percentage: number) => {
+    if (audioRef.current) {
+      const currentTime = audioRef.current.currentTime + audioRef.current.duration * (percentage / 100);
+      audioRef.current.currentTime = Math.min(currentTime, audioRef.current.duration);
+    }
+  };
+
+  const adjustVolume = (delta: number) => {
+    if (audioRef.current) {
+      audioRef.current.volume = Math.max(0, Math.min(1, audioRef.current.volume + delta));
+    }
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    if (!hasKeyBindings) {
+      return;
+    }
+    switch (event.key) {
+      case 'ArrowLeft':
+        adjustAudioTime(-5);
+        break;
+      case 'ArrowRight':
+        adjustAudioTime(5);
+        break;
+      case 'ArrowUp':
+        adjustVolume(0.05);
+        break;
+      case 'ArrowDown':
+        adjustVolume(-0.05);
+        break;
+      case ' ':
+        togglePlay();
+        break;
+      default:
+        //Nothing to do
+        break;
+    }
+  };
+
   return (
     <div
+      tabIndex={-1}
+      onKeyDown={handleKeyPress}
       className={`rap-container ${className}`}
       style={{
         ...(backgroundColor ? { backgroundColor: backgroundColor } : {}),
