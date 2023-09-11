@@ -285,6 +285,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     if (!hasKeyBindings) {
       return;
     }
+    event.preventDefault();
     switch (event.key) {
       case 'ArrowLeft':
         adjustAudioTime(-5);
