@@ -6,11 +6,11 @@ import PropsBlock from './PropsBlock';
 import TitleBlock from './TitleBlock';
 import Navbar from './Navbar';
 import MultipleExampleBlock from './MultipleExampleBlock';
-import './customStyle1.css';
-import './customStyle2.css';
-import { Music } from '../helpers/Music';
 import SourceLink from './SourceLink';
 import Footer from './Footer';
+import { Music } from '../helpers/Music';
+import './customStyle1.css';
+import './customStyle2.css';
 
 const RootPage = () => {
   const music = useRef(new Music());

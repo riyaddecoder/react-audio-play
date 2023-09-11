@@ -36,6 +36,10 @@ const PropsBlock = () => {
           <code className="bg-gray-100 p-1">volume</code> (number, optional): The initial volume level (0 to 100) of the audio (default: <code className="bg-gray-100 p-1">100</code>).
         </li>
         <li className="mt-2">
+          <code className="bg-gray-100 p-1">hasKeyBindings</code> (boolean, optional): Specifies whether the <code className="bg-gray-100 p-1">AudioPlayer</code> component should enable keyboard
+          shortcuts for volume control and seeking. Default is <code className="bg-gray-100 p-1">true</code>.
+        </li>
+        <li className="mt-2">
           <code className="bg-gray-100 p-1">onPlay</code> (function, optional): Callback function to execute when the audio starts playing.
         </li>
         <li className="mt-2">
