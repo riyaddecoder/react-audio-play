@@ -1,6 +1,4 @@
 .rap-container {
-  width: 400px;
-  min-width: 300px;
   height: 56px;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.07);
   display: flex;
