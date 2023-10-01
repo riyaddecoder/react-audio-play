@@ -316,7 +316,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
       style={{
         ...(backgroundColor ? { backgroundColor: backgroundColor } : {}),
         ...(color ? { color: color } : {}),
-        ...(width ? { width: width } : {}),
+        ...(width ? { width: width, maxWidth: width } : {}),
         ...style
       }}
     >
