@@ -54,7 +54,7 @@ const RootPage = () => {
     <div className="bg-gray-100 min-h-screen">
       <Navbar />
 
-      <main className="p-8">
+      <main className="p-1 sm:p-8">
         <div className="bg-white p-6 rounded-md shadow-lg mb-4">
           <TitleBlock />
 
@@ -64,7 +64,7 @@ const RootPage = () => {
 
           <hr className="my-6 border-gray-300" />
 
-          <section className="p-4" id="example-usage">
+          <section className="p-1 sm:p-4" id="example-usage">
             <h2 className="text-2xl font-bold text-black mb-4">Example Usage</h2>
             <p className="mt-4 text-black">
               Below are examples of how you can use the <code className="bg-gray-100 p-1">AudioPlayer</code> component. Replace <code className="bg-gray-100 p-1">path/to/audio.mp3</code> with the

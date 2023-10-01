@@ -24,7 +24,7 @@ const ExampleBlock: React.FC<PropsI> = ({ title, code, className = '', language 
     setTimeout(() => setCopied(false), 1500);
   };
   return (
-    <div className={`mt-5 mb-5 ml-4 ${className}`}>
+    <div className={`mt-5 mb-5 sm:ml-4 ${className}`}>
       <h3 className=" text-xl font-bold mb-5">{title}</h3>
       <div className=" flex flex-wrap items-stretch">
         {/* Audio Player Preview */}
