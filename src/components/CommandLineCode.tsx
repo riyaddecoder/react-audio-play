@@ -21,7 +21,7 @@ const CommandLineCode: React.FC<PropsI> = ({ code, className = '', language = 'c
     setTimeout(() => setCopied(false), 1500);
   };
   return (
-    <div className={`mt-5 mb-5 ml-4 ${className}`}>
+    <div className={`mt-5 mb-5 ml-4 max-lg:text-xs ${className}`}>
       <div className="md:w-1/2 relative ">
         <div className="code-background rounded p-2">
           <pre className={`language-${language} `}>

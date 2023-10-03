@@ -55,7 +55,7 @@ const RootPage = () => {
       <Navbar />
 
       <main className="p-1 sm:p-8">
-        <div className="bg-white p-6 rounded-md shadow-lg mb-4">
+        <div className="bg-white sm:p-6 p-4 rounded-md shadow-lg mb-4">
           <TitleBlock />
 
           <hr className="my-6 border-gray-300" />

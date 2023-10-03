@@ -26,7 +26,7 @@ const TabComponent: React.FC<PropsI> = ({ className = '', tabs, contents }) => {
           ))}
         </ul>
       </div>
-      <div className="p-4">
+      <div className="sm:p-4 py-2">
         {contents.map((eachContent, contentIndex) => (
           <div key={contentIndex} id={tabs[contentIndex]} className={`tab-content ${activeTab === tabs[contentIndex] ? '' : 'hidden'}`}>
             {eachContent}
