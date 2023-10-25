@@ -66,6 +66,13 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     }
   }, [volume]);
 
+  const getTotalDuration = () => {
+    if (!audioRef.current) {
+      return 0;
+    }
+    return audioRef.current.duration !== Infinity ? audioRef.current.duration : audioRef.current.buffered.end(0);
+  };
+
   const handleCanPlay = () => {
     setCanPlay(true);
   };
@@ -74,6 +81,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     if (audioRef.current) {
       setCanPlay(false);
       setHasError(false);
+      audioRef.current.src = src;
       audioRef.current.load();
     }
   };
@@ -113,6 +121,9 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     setIsPlaying(false);
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
+      if (totalTime === '--:--') {
+        handleReload();
+      }
       if (onEnd) {
         onEnd();
       }
@@ -135,14 +146,14 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
   const handleUpdateProgress = () => {
     if (audioRef.current) {
       const current = audioRef.current.currentTime;
-      const percent = (current / audioRef.current.duration) * 100;
+      const percent = (current / getTotalDuration()) * 100;
       setProgressBarPercent(percent);
       setCurrentTime(formatTime(current));
     }
   };
 
   const handleLoadedMetaData = () => {
-    if (audioRef.current?.duration) {
+    if (audioRef.current?.duration && audioRef.current?.duration !== Infinity) {
       setTotalTime(formatTime(audioRef.current.duration ?? 0));
       const currentTime = audioRef.current.duration * coefficient;
       audioRef.current.currentTime = currentTime;
@@ -226,8 +237,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
         audioRef.current.load();
         setCoefficient(getCoefficient(event));
       } else if (audioRef.current.duration) {
-        const currentTime = audioRef.current.duration * getCoefficient(event);
-        audioRef.current.currentTime = currentTime;
+        audioRef.current.currentTime = getTotalDuration() * getCoefficient(event);
       }
     }
   };
@@ -270,8 +280,8 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
 
   const adjustAudioTime = (percentage: number) => {
     if (audioRef.current) {
-      const currentTime = audioRef.current.currentTime + audioRef.current.duration * (percentage / 100);
-      audioRef.current.currentTime = Math.min(currentTime, audioRef.current.duration);
+      const currentTime = audioRef.current.currentTime + getTotalDuration() * (percentage / 100);
+      audioRef.current.currentTime = Math.min(currentTime, getTotalDuration());
     }
   };
 
@@ -356,7 +366,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
             <div ref={rewindPin} className="rap-pin" data-method="rewind" onMouseDown={handleRewindMouseDown} style={sliderColor ? { backgroundColor: sliderColor } : {}}></div>
           </div>
         </div>
-        <span className="rap-total-time">{totalTime}</span>
+        {totalTime !== '--:--' && <span className="rap-total-time">{totalTime}</span>}
       </div>
 
       <div className="rap-volume">
