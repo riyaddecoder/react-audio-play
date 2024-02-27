@@ -201,14 +201,11 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     const rangeBox = getRangeBox(event, currentlyDragged.current);
     const rect = rangeBox.getBoundingClientRect();
     const direction = rangeBox.dataset.direction;
-    let max, min;
     if (direction === 'horizontal') {
-      min = rangeBox.offsetLeft;
-      max = min + rangeBox.offsetWidth;
       if (event.clientX - rect.left < 0 || event.clientX - rect.right > 0) return false;
     } else {
-      min = rect.top;
-      max = min + rangeBox.offsetHeight;
+      const min = rect.top;
+      const max = min + rangeBox.offsetHeight;
       if (event.clientY < min || event.clientY > max) return false;
     }
     return true;
