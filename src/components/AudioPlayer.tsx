@@ -201,14 +201,11 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     const rangeBox = getRangeBox(event, currentlyDragged.current);
     const rect = rangeBox.getBoundingClientRect();
     const direction = rangeBox.dataset.direction;
-    let max, min;
     if (direction === 'horizontal') {
-      min = rangeBox.offsetLeft;
-      max = min + rangeBox.offsetWidth;
-      if (event.clientX < min || event.clientX > max) return false;
+      if (event.clientX - rect.left < 0 || event.clientX - rect.right > 0) return false;
     } else {
-      min = rect.top;
-      max = min + rangeBox.offsetHeight;
+      const min = rect.top;
+      const max = min + rangeBox.offsetHeight;
       if (event.clientY < min || event.clientY > max) return false;
     }
     return true;
@@ -219,7 +216,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     const rect = slider.getBoundingClientRect();
     let K = 0;
     if (slider.dataset.direction === 'horizontal') {
-      const offsetX = event.clientX - slider.offsetLeft;
+      const offsetX = event.clientX - rect.left;
       const width = slider.clientWidth;
       K = offsetX / width;
     } else if (slider.dataset.direction === 'vertical') {
