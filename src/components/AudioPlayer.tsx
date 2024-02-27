@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { iconPaths } from '../helpers/icons/icons';
 import { formatTime } from '../helpers/utils/formatTime';
 import { getRangeBox } from '../helpers/utils/getRangeBox';
+import getDeviceEventNames from '../helpers/utils/getDeviceEventNames';
 import './audioPlay.css';
 
 export interface AudioInterface {
@@ -197,37 +198,43 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     }
   };
 
-  const inRange = (event: MouseEvent | React.MouseEvent<HTMLDivElement>) => {
+  const inRange = (event: MouseEvent | TouchEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rangeBox = getRangeBox(event, currentlyDragged.current);
     const rect = rangeBox.getBoundingClientRect();
     const direction = rangeBox.dataset.direction;
     if (direction === 'horizontal') {
-      if (event.clientX - rect.left < 0 || event.clientX - rect.right > 0) return false;
+      const clientX = 'touches' in event ? event.touches[0].clientX : event.clientX;
+      if (clientX - rect.left < 0 || clientX - rect.right > 0) return false;
     } else {
       const min = rect.top;
       const max = min + rangeBox.offsetHeight;
-      if (event.clientY < min || event.clientY > max) return false;
+      const clientY = 'touches' in event ? event.touches[0].clientY : event.clientY;
+      if (clientY < min || clientY > max) return false;
     }
     return true;
   };
 
-  function getCoefficient(event: MouseEvent | React.MouseEvent<HTMLDivElement>) {
+  function getCoefficient(event: MouseEvent | TouchEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const slider = getRangeBox(event, currentlyDragged.current);
     const rect = slider.getBoundingClientRect();
     let K = 0;
+
     if (slider.dataset.direction === 'horizontal') {
-      const offsetX = event.clientX - rect.left;
+      const clientX = 'touches' in event ? event.touches[0].clientX : event.clientX;
+      const offsetX = clientX - rect.left;
       const width = slider.clientWidth;
       K = offsetX / width;
     } else if (slider.dataset.direction === 'vertical') {
+      const clientY = 'touches' in event ? event.touches[0].clientY : event.clientY;
       const height = slider.clientHeight;
-      const offsetY = event.clientY - rect.top;
+      const offsetY = clientY - rect.top;
       K = 1 - offsetY / height;
     }
+
     return K;
   }
 
-  const rewind = (event: MouseEvent | React.MouseEvent<HTMLDivElement>) => {
+  const rewind = (event: MouseEvent | TouchEvent | React.MouseEvent<HTMLDivElement>) => {
     if (inRange(event) && audioRef.current) {
       if (preload === 'none' && !audioRef.current.duration) {
         setCanPlay(false);
@@ -239,37 +246,38 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     }
   };
 
-  const changeVolume = (event: MouseEvent | React.MouseEvent<HTMLDivElement>) => {
+  const changeVolume = (event: MouseEvent | TouchEvent | React.MouseEvent<HTMLDivElement>) => {
     if (inRange(event) && audioRef.current) {
       audioRef.current.volume = getCoefficient(event);
     }
   };
 
-  const handleRewindMouseDown = () => {
+  const handleRewindDragging = () => {
     currentlyDragged.current = rewindPin.current;
-
-    window.addEventListener('mousemove', rewind, false);
+    const events = getDeviceEventNames();
+    window.addEventListener(events.move, rewind, false);
 
     window.addEventListener(
-      'mouseup',
+      events.up,
       () => {
         currentlyDragged.current = null;
-        window.removeEventListener('mousemove', rewind, false);
+        window.removeEventListener(events.move, rewind, false);
       },
       { once: true }
     );
   };
 
-  const handleVolumeMouseDown = () => {
+  const handleVolumeDragging = () => {
     currentlyDragged.current = volumePin.current;
+    const events = getDeviceEventNames();
 
-    window.addEventListener('mousemove', changeVolume, false);
+    window.addEventListener(events.move, changeVolume, false);
 
     window.addEventListener(
-      'mouseup',
+      events.up,
       () => {
         currentlyDragged.current = null;
-        window.removeEventListener('mousemove', changeVolume, false);
+        window.removeEventListener(events.move, changeVolume, false);
       },
       false
     );
@@ -352,7 +360,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
 
       <div className="rap-controls">
         <span className="rap-current-time">{currentTime}</span>
-        <div className="rap-slider" data-direction="horizontal" onMouseDown={handleRewindMouseDown} onClick={rewind}>
+        <div className="rap-slider" data-direction="horizontal" onMouseDown={handleRewindDragging} onTouchStart={handleRewindDragging} onClick={rewind}>
           <div
             className="rap-progress"
             style={{
@@ -360,7 +368,14 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
               ...(sliderColor ? { backgroundColor: sliderColor } : {})
             }}
           >
-            <div ref={rewindPin} className="rap-pin" data-method="rewind" onMouseDown={handleRewindMouseDown} style={sliderColor ? { backgroundColor: sliderColor } : {}}></div>
+            <div
+              ref={rewindPin}
+              className="rap-pin"
+              data-method="rewind"
+              onMouseDown={handleRewindDragging}
+              onTouchStart={handleRewindDragging}
+              style={sliderColor ? { backgroundColor: sliderColor } : {}}
+            ></div>
           </div>
         </div>
         {totalTime !== '--:--' && <span className="rap-total-time">{totalTime}</span>}
@@ -380,7 +395,7 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
               e.stopPropagation();
             }}
           >
-            <div className="rap-slider" data-direction="vertical" onClick={changeVolume} onMouseDown={handleVolumeMouseDown}>
+            <div className="rap-slider" data-direction="vertical" onClick={changeVolume} onMouseDown={handleVolumeDragging} onTouchStart={handleVolumeDragging}>
               <div
                 className="rap-progress"
                 style={{
@@ -388,7 +403,14 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
                   ...(sliderColor ? { backgroundColor: sliderColor } : {})
                 }}
               >
-                <div ref={volumePin} className="rap-pin" data-method="changeVolume" style={sliderColor ? { backgroundColor: sliderColor } : {}} onMouseDown={handleVolumeMouseDown}></div>
+                <div
+                  ref={volumePin}
+                  className="rap-pin"
+                  data-method="changeVolume"
+                  style={sliderColor ? { backgroundColor: sliderColor } : {}}
+                  onMouseDown={handleVolumeDragging}
+                  onTouchStart={handleVolumeDragging}
+                ></div>
               </div>
             </div>
           </div>
