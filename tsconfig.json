@@ -7,7 +7,6 @@
     "module": "ESNext",
     "declaration": true,
     "declarationDir": "types",
-    "sourceMap": true,
     "outDir": "dist",
     "moduleResolution": "node",
     "emitDeclarationOnly": true,

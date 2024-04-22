@@ -1,0 +1,5 @@
+src
+.github
+.prettierrc.json
+rollup.config.mjs
+tsconfig.json

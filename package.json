@@ -1,11 +1,11 @@
 {
   "name": "react-audio-play",
-  "version": "0.0.19",
+  "version": "1.0.0",
   "description": "React audio player component",
   "homepage": "https://riyaddecoder.github.io/react-audio-play/",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "LICENSE",
@@ -14,7 +14,7 @@
   "scripts": {
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run prettier && npm run lint",
-    "build": "rollup -c --bundleConfigAsCjs",
+    "build": "rollup -c",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
     "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
     "test": "jest --config jestconfig.json"
@@ -32,11 +32,10 @@
   "author": "Shahidul Alam Riyad (riyaddecoder)",
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.3",
     "@rollup/plugin-image": "^3.0.2",
-    "@rollup/plugin-node-resolve": "^15.1.0",
-    "@rollup/plugin-terser": "^0.4.3",
-    "@rollup/plugin-typescript": "^11.1.2",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.3",
     "@types/react": "^18.0.14",
@@ -53,10 +52,8 @@
     "prettier": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rollup": "^3.27.2",
-    "rollup-plugin-dts": "^5.3.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-styles": "^4.0.0",
+    "rollup": "^4.13.2",
+    "rollup-plugin-css-only": "^4.5.2",
     "ts-jest": "^29.1.1",
     "tslib": "^2.6.0",
     "typescript": "^5.1.6"
