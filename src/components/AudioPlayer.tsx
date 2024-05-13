@@ -6,6 +6,7 @@ import getDeviceEventNames from '../helpers/utils/getDeviceEventNames';
 import './audioPlay.css';
 
 export interface AudioInterface {
+  autoPlay?: boolean;
   className?: string;
   src: string;
   loop?: boolean;
@@ -25,6 +26,7 @@ export interface AudioInterface {
 }
 
 export const AudioPlayer: React.FC<AudioInterface> = ({
+  autoPlay = false,
   className = '',
   src,
   loop = false,
@@ -323,6 +325,10 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
     }
   };
 
+  const handleOnPlay = () => {
+    setIsPlaying(true);
+  };
+
   return (
     <div
       tabIndex={-1}
@@ -419,12 +425,14 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
       </div>
 
       <audio
-        ref={audioRef}
         loop={loop}
+        ref={audioRef}
         preload={preload}
-        onCanPlay={handleCanPlay}
+        autoPlay={autoPlay}
+        onPlay={handleOnPlay}
         onEnded={handleEnded}
         onError={handleOnError}
+        onCanPlay={handleCanPlay}
         onLoadedMetadata={handleLoadedMetaData}
         onTimeUpdate={handleUpdateProgress}
         onVolumeChange={handleUpdateVolume}
