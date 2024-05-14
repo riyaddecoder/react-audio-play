@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Prism from 'prismjs';
 import { AudioPlayer } from 'react-audio-play';
-import ExampleBlock from './ExampleBlock';
-import PropsBlock from './PropsBlock';
-import TitleBlock from './TitleBlock';
 import Navbar from './Navbar';
-import MultipleExampleBlock from './MultipleExampleBlock';
-import SourceLink from './SourceLink';
 import Footer from './Footer';
+import TitleBlock from './TitleBlock';
+import PropsBlock from './PropsBlock';
+import SourceLink from './SourceLink';
+import ExampleBlock from './ExampleBlock';
+import KeyBindingBlock from './KeyBindingBlock';
+import MultipleExampleBlock from './MultipleExampleBlock';
 import { Music } from '../helpers/Music';
 import './customStyle1.css';
 import './customStyle2.css';
@@ -61,6 +62,10 @@ const RootPage = () => {
           <hr className="my-6 border-gray-300" />
 
           <PropsBlock />
+
+          <hr className="my-6 border-gray-300" />
+
+          <KeyBindingBlock />
 
           <hr className="my-6 border-gray-300" />
 
