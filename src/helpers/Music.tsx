@@ -2,7 +2,7 @@ const MUSICS = [
   {
     url: 'https://github.com/riyaddecoder/audio-files/raw/master/Aurthohin-Anmone.mp3',
     title: 'Anmone - Aurthohin',
-    sourceLink: 'https://youtu.be/P9jXUxOkcR8?si=a7DhScN3EFtvuEdM'
+    sourceLink: 'https://youtu.be/OZZ_Qc2t49M?si=mXdMlU2pZVF-b5Mi'
   },
   {
     url: 'https://github.com/riyaddecoder/audio-files/raw/master/Kotha%20Koiyo%20Na%20-%20Coke%20Studio%20Bangla.mp3',
@@ -12,7 +12,7 @@ const MUSICS = [
   {
     url: 'https://github.com/riyaddecoder/audio-files/raw/master/Anmone2-Aurthohin.mp3',
     title: 'Anmone 2 - Aurthohin',
-    sourceLink: 'https://youtu.be/3I3l-x93kOY?si=c9Uymhr7i3r2VN7y'
+    sourceLink: 'https://youtu.be/qWW4GBgQII8?si=e_ijRpo144ip0LT6'
   },
   {
     url: 'https://github.com/riyaddecoder/audio-files/raw/master/Poth%20Chola%20-%20Artcell.mp3',
