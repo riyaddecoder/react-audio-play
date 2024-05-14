@@ -74,6 +74,7 @@ They can be turned off by setting `hasKeyBindings` prop to `false`
 
 - `className` (string, optional): A CSS class name for styling the component.
 - `src` (string, required): The URL or file path of the audio file to be played.
+- `autoPlay` (boolean, optional): Set this to `true` to autoplay the audio. Default is `false`.
 - `preload` (string, optional): Specifies the preload behavior for the audio file. Possible values are:
   - `auto`: The audio data is loaded as soon as possible.
   - `metadata`: Only metadata (e.g., duration) is loaded.
