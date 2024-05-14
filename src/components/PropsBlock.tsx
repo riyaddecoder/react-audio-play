@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaExclamationTriangle } from 'react-icons/fa';
+import * as Tooltip from '@radix-ui/react-tooltip';
 
 const PropsBlock = () => {
   return (
@@ -13,6 +15,34 @@ const PropsBlock = () => {
         </li>
         <li className="mt-2">
           <code className="bg-gray-100 p-1">src</code> (string, required): The URL or file path of the audio file to be played.
+        </li>
+        <li className="mt-2">
+          <div className="inline-flex items-center">
+            <code className="bg-gray-100 p-1">autoPlay</code> (boolean, optional): Set to <code className="bg-gray-100 p-1">true</code> to autoplay the audio (default:{' '}
+            <code className="bg-gray-100 p-1">false</code>).
+            <Tooltip.Provider>
+              <Tooltip.Root delayDuration={0}>
+                <Tooltip.Trigger asChild>
+                  <div>
+                    <FaExclamationTriangle className="cursor-pointer text-red-500 ml-2" />
+                  </div>
+                </Tooltip.Trigger>
+                <Tooltip.Portal>
+                  <Tooltip.Content sideOffset={5} className="bg-slate-800 p-2 rounded text-sm">
+                    <span className="text-white">Autoplay may be blocked by the browser if there is no interaction.</span>
+                    <br />
+                    <span className="text-white">
+                      Please check the{' '}
+                      <a className="text-blue-200" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide#autoplay_availability" rel="noreferrer">
+                        Autoplay availability guide
+                      </a>
+                    </span>
+                    <Tooltip.Arrow />
+                  </Tooltip.Content>
+                </Tooltip.Portal>
+              </Tooltip.Root>
+            </Tooltip.Provider>
+          </div>
         </li>
         <li className="mt-2">
           <code className="bg-gray-100 p-1">preload</code> (string, optional): Specifies the preload behavior for the audio file. Possible values are.

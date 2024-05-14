@@ -58,12 +58,13 @@
     "react": "^18.2.0"
   },
   "dependencies": {
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
     "parcel": "^2.9.3",
     "prism-theme-vars": "^0.2.4",
     "prismjs": "^1.29.0",
-    "react-audio-play": "^0.0.17",
+    "react-audio-play": "^1.0.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "typescript": "^5.1.6"
