@@ -60,6 +60,11 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
   const [hasError, setHasError] = useState<boolean>(false);
 
   useEffect(() => {
+    handleReload();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [src]);
+
+  useEffect(() => {
     if (!isNaN(volume)) {
       const tempVol = volume > 100 ? 100 : volume < 0 ? 0 : volume;
       setVolumeProgress(tempVol);
