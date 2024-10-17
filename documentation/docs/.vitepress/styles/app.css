@@ -1,0 +1,31 @@
+.VPNavBar .vpi-social-npm {
+  color: #cb3837;
+}
+
+.dark .VPNavBar .vpi-social-npm {
+  color: #ff5150;
+}
+
+.VPNavBar .vpi-social-linkedin {
+  color: #0a66c2;
+}
+
+.dark .VPNavBar .vpi-social-linkedin {
+  color: #1e8eff;
+}
+
+.VPNavBar .vpi-social-discord {
+  color: #5865f2;
+}
+
+.dark .VPNavBar .vpi-social-discord {
+  color: #6c78ff;
+}
+
+.dark .VPNavBar .vpi-social-github {
+  color: #fff;
+}
+
+.VPNavBar .vpi-social-github {
+  color: #000;
+}
