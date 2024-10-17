@@ -1,6 +1,0 @@
-node_modules
-.idea
-dist
-yarn-error.log
-.vscode
-.parcel-cache
