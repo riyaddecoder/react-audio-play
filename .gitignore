@@ -4,3 +4,6 @@ dist
 yarn-error.log
 .vscode
 .parcel-cache
+
+/documentation/docs/.vitepress/cache
+/documentation/docs/docs
