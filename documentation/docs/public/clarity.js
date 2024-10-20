@@ -6,7 +6,7 @@
     };
   t = l.createElement(r);
   t.async = 1;
-  t.src = "https://www.clarity.ms/tag/" + i;
+  t.src = 'https://www.clarity.ms/tag/' + i;
   y = l.getElementsByTagName(r)[0];
   y.parentNode.insertBefore(t, y);
-})(window, document, "clarity", "script", "itd5tbp46u");
+})(window, document, 'clarity', 'script', 'itd5tbp46u');
