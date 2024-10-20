@@ -65,6 +65,12 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
   }, [src]);
 
   useEffect(() => {
+    if (audioRef.current?.duration && audioRef.current.duration !== Infinity) {
+      setTotalTime(formatTime(audioRef.current.duration));
+    }
+  }, [audioRef.current?.duration]);
+
+  useEffect(() => {
     if (!isNaN(volume)) {
       const tempVol = volume > 100 ? 100 : volume < 0 ? 0 : volume;
       setVolumeProgress(tempVol);
@@ -87,6 +93,8 @@ export const AudioPlayer: React.FC<AudioInterface> = ({
 
   const handleReload = () => {
     if (audioRef.current) {
+      setIsPlaying(false);
+      setTotalTime('--:--');
       setCanPlay(false);
       setHasError(false);
       audioRef.current.src = src;
