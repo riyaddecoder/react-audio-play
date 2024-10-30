@@ -20,7 +20,7 @@ minimal setup.
 
 ## Demo
 
-Check [examples](https://riyaddecoder.github.io/react-audio-play/#example-usage)
+Check [examples](https://riyaddecoder.github.io/react-audio-play/examples.html)
 
 ## Installation
 
@@ -122,7 +122,7 @@ export default App;
 ## Custom Styling
 
 You can easily customize the appearance of the audio player by applying your CSS styles to the AudioPlayer component or by overriding the default styles in your project's CSS. Check
-[examples](https://riyaddecoder.github.io/react-audio-play/#styled-examples)
+[examples](https://riyaddecoder.github.io/react-audio-play/examples.html#example-5-using-style-object)
 
 ## License
 
