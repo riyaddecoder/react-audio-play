@@ -105,6 +105,8 @@ Starting with version `v1.0.4`, you can access certain actions of the `AudioPlay
 
 ## Example usage with ref (available from v1.0.4)
 
+[Live preview here](https://riyaddecoder.github.io/react-audio-play/examples.html#example-4-usage-with-ref-available-from-v1-0-4)
+
 ```js
 import { useRef } from 'react';
 import { AudioPlayer, AudioPlayerRef } from 'react-audio-play';
@@ -170,7 +172,7 @@ export default App;
 ## Custom Styling
 
 You can easily customize the appearance of the audio player by applying your CSS styles to the AudioPlayer component or by overriding the default styles in your project's CSS. Check
-[examples](https://riyaddecoder.github.io/react-audio-play/examples.html#example-5-using-style-object)
+[examples](https://riyaddecoder.github.io/react-audio-play/examples.html#example-6-using-style-object)
 
 ## License
 
