@@ -93,6 +93,54 @@ They can be turned off by setting `hasKeyBindings` prop to `false`
 - `width` (string, optional): The width of the audio player. Use this prop to set the width of the player. For example, `"100%"`, `"300px"`, etc.
 - `style` (object, optional): An object containing additional inline styles for the component.
 
+
+## Advanced Usage
+
+Starting with version `v1.0.4`, you can access certain actions of the `AudioPlayer` component programmatically using a `ref` with the following interface:
+
+- `play`: Function to start audio playback.
+- `pause`: Function to pause audio playback.
+- `stop`: Function to stop the audio playback.
+- `focus`: Function to focus on the audio player component.
+
+## Example usage with ref (available from v1.0.4)
+
+```js
+import { useRef } from 'react';
+import { AudioPlayer, AudioPlayerRef } from 'react-audio-play';
+
+function App() {
+  const playerRef = useRef<AudioPlayerRef>(null);
+
+  const handlePlay = () => {
+    playerRef.current?.play();
+  };
+
+  const handlePause = () => {
+    playerRef.current?.pause();
+  };
+
+  const handleStop = () => {
+    playerRef.current?.stop();
+  };
+
+  const handleFocus = () => {
+    playerRef.current?.focus();
+  };
+
+  return (
+    <div>
+      <AudioPlayer ref={playerRef} src="path/to/audio.mp3" autoPlay />
+      <button onClick={handlePlay}>Play</button>
+      <button onClick={handlePause}>Pause</button>
+      <button onClick={handleStop}>Stop</button>
+      <button onClick={handleFocus}>Focus</button>
+    </div>
+  );
+}
+
+```
+
 ## Example with Custom Event Handling
 
 ```js
