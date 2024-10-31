@@ -1,6 +1,6 @@
 {
   "name": "react-audio-play",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React audio player component",
   "homepage": "https://riyaddecoder.github.io/react-audio-play/",
   "main": "dist/cjs/index.js",
