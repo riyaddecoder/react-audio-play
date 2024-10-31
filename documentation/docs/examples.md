@@ -81,7 +81,51 @@ Preview
 
 <small>Music Source: <a :href="music.getCurrentMusic().sourceLink" target="_blank">{{music.getCurrentMusic().title}}</a></small>
 
-## Example 4: Darkmode using basic style props
+## Example 4: Usage with ref (available from v1.0.4)
+
+```tsx
+import { useRef } from 'react';
+import { AudioPlayer, AudioPlayerRef } from 'react-audio-play';
+
+function App() {
+  const playerRef = useRef<AudioPlayerRef>(null);
+
+  const handlePlay = () => {
+    playerRef.current?.play();
+  };
+
+  const handlePause = () => {
+    playerRef.current?.pause();
+  };
+
+  const handleStop = () => {
+    playerRef.current?.stop();
+  };
+
+  const handleFocus = () => {
+    playerRef.current?.focus();
+  };
+
+  return (
+    <div>
+      <AudioPlayer ref={playerRef} src="path/to/audio.mp3" autoPlay />
+      <button onClick={handlePlay}>Play</button>
+      <button onClick={handlePause}>Pause</button>
+      <button onClick={handleStop}>Stop</button>
+      <button onClick={handleFocus}>Focus</button>
+    </div>
+  );
+}
+
+```
+
+Preview
+
+<AudioPlayerRefExample :src="music.nextMusic().url"/>
+
+<small>Music Source: <a :href="music.getCurrentMusic().sourceLink" target="_blank">{{music.getCurrentMusic().title}}</a></small>
+
+## Example 5: Darkmode using basic style props
 
 ```js
 import { AudioPlayer } from "react-audio-play";
@@ -104,7 +148,7 @@ Preview
 
 <small>Music Source: <a :href="music.getCurrentMusic().sourceLink" target="_blank">{{music.getCurrentMusic().title}}</a></small>
 
-## Example 5: Using Style Object
+## Example 6: Using Style Object
 
 ```js
 import { AudioPlayer } from "react-audio-play";
@@ -127,7 +171,7 @@ Preview
 
 <small>Music Source: <a :href="music.getCurrentMusic().sourceLink" target="_blank">{{music.getCurrentMusic().title}}</a></small>
 
-## Example 6: Using Custom CSS
+## Example 7: Using Custom CSS
 
 ::: code-group
 
@@ -183,7 +227,7 @@ Preview
 
 <small>Music Source: <a :href="music.getCurrentMusic().sourceLink" target="_blank">{{music.getCurrentMusic().title}}</a></small>
 
-## Example 7: More Playing With CSS
+## Example 8: More Playing With CSS
 
 ::: code-group
 
@@ -255,6 +299,7 @@ Preview
 <script setup>
 import { Music } from './.vitepress/lib/Music.ts';
 import AudioPlayerWrapper from './.vitepress/components/AudioPlayerWrapper.vue'; 
+import AudioPlayerRefExample from './.vitepress/components/AudioPlayerRefExample.vue'; 
 
 const music = new Music();
 </script>

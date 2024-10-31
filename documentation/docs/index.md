@@ -52,6 +52,20 @@ The **AudioPlayer** component accepts the following props:
 | `width`         | string, optional     | The width of the audio player. For example, `"100%"`, `"300px"`, etc.                          |
 | `style`         | object, optional     | An object containing additional inline styles for the component.                               |
 
+
+## Advanced Usage
+
+Starting with version `v1.0.4`, you can access certain actions of the `AudioPlayer` component programmatically using a `ref` with the following interface:
+
+- `play`: Function to start audio playback.
+- `pause`: Function to pause audio playback.
+- `stop`: Function to stop the audio playback.
+- `focus`: Function to focus on the audio player component.
+
+::: info  
+[Example Here](/examples.html#example-4-usage-with-ref-available-from-v1-0-4)
+:::
+
 ## Keyboard Shortcuts
 
 Below are the keyboard shortcuts available when the audio player is focused. They can be turned off by setting the `hasKeyBindings` prop to `false`.
